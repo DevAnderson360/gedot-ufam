@@ -1,0 +1,23 @@
+
+date 2020-07-09
+	>Criação da estrutura do projeto
+	
+	>Criação da Classe Discentes
+		>Metodos get e set
+		>Metodos de banco de dados;
+		>gravar no banco de dados;
+	
+	>Control->post_discent (cria um novo registro no banco)
+	
+	>Control->get_discent (consulta um registro no banco)
+
+	>Criação da classe Tcc
+		>Metodos get e set
+
+
+--------------------------------------------------------------
+						PEDENCIAS
+--------------------------------------------------------------
+
+	control/post_discent.php > validador dos atributos
+	Class Discent 			 > validar os atributos

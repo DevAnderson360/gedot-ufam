@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ICET:: Gerenciador de TCC</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/siderbar.css">
+
+    <link rel="stylesheet" href="icons/mdi/css/materialdesignicons.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="js/solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+
+    <style>
+        .containccccer{
+            margin-top: 10%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-xl navbar-light bg-light shadow">
+        <a class="navbar-brand" href="#"><img class="img-fluid" src="img/sis1.png" alt="" width="50" height="50">Sistema de TCC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <!--li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Ação</a>
+                        <a class="dropdown-item" href="#">Outra ação</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Algo mais aqui</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Desativado</a>
+                </li-->
+            </ul>
+            <form class="form-inline my-1 my-lg-0" id="formProfessor" method="POST">
+                <input class="form-control mr-sm-1" type="text" placeholder="Professor" name='matricula' />
+                <input class="form-control mr-sm-1" type="password" placeholder="*****" name="senha" />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Entrar</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 border p-3 mt-2">
+                <h5>Acessar meus dados</h5>
+                <form action="control/discent_login.php" method="POST" id="formlogin" class="mt-2">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="loginMatricula">Matricula:</label>
+                            <input type="text" class="form-control" name="registration" id="loginMatricula" placeholder="Matrícula da UFAM" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="loginSenha">Senha:</label>
+                            <input type="password" class="form-control" name="password" id="loginSenha" placeholder="******" required="" />
+                        </div>
+                    </div>
+                    <span class="small">
+                        <a href="#" class="badge">Esqueci minha senha</a>
+                    </span>
+                    <div class="form-row">
+                        <button class="btn btn-success col m-3" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5 ml-auto border p-3 mt-2">
+                <h5>Primeiro Acesso</h5>
+                <small>Todos os campos são obrigatorios</small>
+                <form action="control/post_discent.php" id="formCad">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadNome">Nome:</label>
+                            <input type="text" class="form-control" name="nome" id="cadNome" placeholder="Seu nome completo com Iniciais Maiusculas" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadEmail">Email:</label>
+                            <input type="email" class="form-control" name="email" placeholder="endereco@host.com" id="cadEmail" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadTelefone">Telefone:</label>
+                            <input type="text" class="form-control" name="telefone" id="cadTelefone" placeholder="(92) 99999-9999" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadMatricula">Matrícula:</label>
+                            <input type="text" class="form-control" name="matricula" id="cadMatricula" maxlength="8" placeholder="Matrícula da UFAM" required="">
+                        </div>
+                    </div>
+                    <span>Semestre Atual</span>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadSemestreAno">Ano:</label>
+                            <input type="text" class="form-control" name="ano" id="cadSemestreAno" placeholder="2020" maxlength="4" required="">
+                        </div>
+                        <div class="form-group mx-auto col-1">
+                            <label for="">&nbsp</label>
+                            <input type="text" class="form-control-plaintext text-center" value="/" disabled="">
+                        </div>
+                        <div class="form-group col">
+                            <label for="cadSemestre">Semestre:</label>
+                            <select name="semestre" id="cadSemestre" class="form-control" required="">
+                                <option value="">Selecione...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadSenha">Senha:</label>
+                            <input type="password" class="form-control" placeholder="******" name="senha" id="cadSenha" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button class="btn btn-success col m-3" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Extras -->
+    <!--script src="js/jquery.mask.min.js"></script-->
+    <script src="js/funcoes.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(()=>{
+           
+            let buttonFormLogin   = new Button('#formlogin > button[type=submit]');
+            let buttonFormRegister = new Button('#formCad > button[type=submit]');
+
+            let formLogin = new FormValidate('#formlogin', buttonFormLogin, null);
+
+            let formRegister = new FormValidate('#formCad', buttonFormRegister, null);
+        });
+    </script>
+</body>
+
+</html>

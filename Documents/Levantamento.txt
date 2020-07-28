@@ -1,0 +1,21 @@
+Sistema gerador de documentos de TCC
+
+
+-----------CASOS DE USO-----------
+//////ALUNO/////
+	>Login
+	>Manter cadastro
+	>Manter avaliadores
+	>Manter Orientadores
+
+////PROFESSOR DA DISCIPLINA/////
+	<extends ALUNO>
+	>gerar documentos
+
+/////////REGRA DE NEGOCIO//////////
+	Discente não poderá ter mais de um tcc cadastrado
+
+
+///////CLASSES//////
+
+
