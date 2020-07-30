@@ -2,7 +2,7 @@
 	
 	/**
 	 * get dados do tcc
-	 * @Param recebe var POST ou GET se não seta com o discente
+	 * @Param recebe var POST ou GET se não seta com a session
 	 **/
 
 	require_once "../vendor/autoload.php";
@@ -27,8 +27,11 @@
 		//falta lançar validação
 		$id_discent = empty($_REQUEST['discent']) ? $_SESSION['user_id']: $_REQUEST['discent'];
 
+		//se existir a request coorientador retorna 2;
+		$tipo = empty($_REQUEST['coorientador']) ? 1: 2;
+
 		$tcc->setDiscente($id_discent);
 
-	    echo $tcc->objectJson();
+	    echo \App\Utility\Tools::response_json('OK','Success',$tcc->getOrientador($tipo));
 
 	}

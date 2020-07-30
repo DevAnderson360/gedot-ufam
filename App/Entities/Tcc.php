@@ -13,6 +13,9 @@
 		private $discente;
 		private $data_avaliacao;
 		private $registro;
+		private $orientador;
+		private $coorientador;
+		private $avaliadores;
 
 		//recebe uma conexão com o banco de dados e seta na superclass crud
 		function __construct($conexao)
@@ -118,7 +121,7 @@
 		//////////--------------OPERAÇÕES NO BANCO DE DADOS----------/////
 
 		//retorna array com dados do objeto
-		private function getArrayData()
+		public function getArrayData()
 		{
 			return array(
 				"id" 			 => $this->id,
@@ -143,8 +146,13 @@
 			$data = self::$crud->select($sql,array($this->discente),false);
 
 			if($data !== null){
-				if($set)
+				if($set){
 					$this->setDataBd($data);
+					$this->orientador   = $this->getOrientador();
+					$this->coorientador = $this->getOrientador(2);
+					$this->avaliadores = $this->getAvaliadores();
+
+				}
 				return true;
 			}
 
@@ -174,7 +182,14 @@
 		{
 			$this->getBDTcc(true);
 
-			return json_encode($this->getArrayData());
+			return json_encode(
+								array(
+										"tcc" => $this->getArrayData(),
+										"orientador" => $this->orientador,
+										"coorientador" => $this->coorientador,
+										"avaliadores" => $this->avaliadores,
+									)
+							);
 		}
 
 		//inserir no DB um novo registro
@@ -205,5 +220,42 @@
  		    return self::$crud->update($this->getArrayData(),array('id=' => $this->id));
 
 		}
+
+		/**
+		 * busca no banco de dados pelos orientadores
+		 * @default $tipo = 1 orientador
+		 * @param $tipo = 1 para orientador ou 2 para coorientador
+		 * @return orientadores
+		 * @author default
+		 **/
+		function getOrientador($tipo = 1)
+		{
+ 		    //seta o id do tcc;
+ 		    $this->setId ();
+
+			$sql = "SELECT tipo, id, tcc, nome,titulo,instituicao, telefone, email, tipo, registro FROM `orientador` WHERE orientador.tcc = ? and orientador.tipo = ?";
+
+			return self::$crud->select($sql,array($this->id, $tipo),false);
+
+		}
+
+		/**
+		 * busca no banco de dados pelos avaliadores
+		 * @default $tipo = 1 orientador
+		 * @param $tipo = 1 para orientador ou 2 para coorientador
+		 * @return avaliadores
+		 * @author default
+		 **/
+		function getAvaliadores()
+		{
+ 		    //seta o id do tcc;
+ 		    $this->setId ();
+
+			$sql = "SELECT * FROM `avaliador` WHERE avaliador.tcc = ?";
+
+			return self::$crud->select($sql,array($this->id),true);
+
+		}
+
 
 	}//end class	

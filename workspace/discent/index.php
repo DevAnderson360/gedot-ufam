@@ -8,7 +8,21 @@
     //controle de pagina
     $page = 1;
 
-    $tcc_id = 0;
+
+
+    $titulos = function()
+    {
+       $conn = \App\Bd\Database::conexao();
+
+       $sql = "SELECT * FROM titulo";
+
+       $query = $conn->prepare($sql);
+
+       $query->execute();
+
+       return $query->fetchAll(\PDO::FETCH_OBJ);
+    };
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -25,349 +39,362 @@
     <link rel="stylesheet" href="../../css/siderbar.css">
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="js/jquery.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
 
-    <script src="js/jquery.mask.min.js"></script>
+    <script src="../../js/jquery.mask.min.js"></script>
 
     <!-- Font Awesome JS -->
-    <script defer src="js/solid.js"></script>
-    <script defer src="js/fontawesome.js"></script>
+    <script defer src="../../js/solid.js"></script>
+    <script defer src="../../js/fontawesome.js"></script>
 
 </head>
 
 <body>
-
-    
-
-
-        <nav class="mb-1 navbar navbar-expand-lg  navbar-dark" style="background-color: #008B00;">
-          <a class="navbar-brand justify-content-center" href="../../#">Sistema TCC</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-                  aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="mb-1 navbar navbar-expand-lg  navbar-dark" style="background-color: #008B00;">
+        <a class="navbar-brand justify-content-center" href="../../#">Gedot</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+          aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="../../homeAluno.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../dadosAluno.php">Dados Pessoais</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../senha.php">Mudar Senha</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../logoff.php">Sair</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../../homeAluno.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../dadosAluno.php">Dados Pessoais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../senha.php">Mudar Senha</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../logoff.php">Sair</a>
+                </li>
             </ul> 
             <div style="text-align: right;">
-                <a class="nav-link" href="../../#" style="color: white;"><?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" class="rounded-circle z-depth-0"
-               alt="avatar image" style="width: 30px; height: 30px;"></a>
-               
-          </div>           
-          </div>
-        </nav>
-
-            <h4 style="text-align: center;">Meus dados do TCC</h4>
-
-            <form action="#" id="formTcc" value="salvarTcc.php">
-                <input type="hidden" name="id" value="<?=$tcc_id?>">
-                <div class="card shadow">
-                    <div class="card-header" style="text-align: center;">Dados do TCC</div>
-                    <div class="card-body">
-                        
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="tituloTcc">Título do tcc</label>
-                                <input type="text" class="form-control" name="tituloTcc" id="tituloTcc" value="<?=getValue($dadosTcc,'titulo')?>" required="" />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="data">Data de Defesa</label>
-                                <input type="date" class="form-control" name="data" id="data" value="<?=getValue($dadosTcc,'data_avaliacao')?>" required="">
-                            </div>
-                        </div>
-                    </div><!--card-body-->
-                    <div class="card-footer">
-                        <button class="btn btn-success" type="submit">Salvar</button>
-                    </div>
-                </div>
-            </form>
-
-<!--dados orientador-->
-            <form action="#" id="formOrientador" value="salvarTcc_orientador.php">
-                <input type="hidden" name="id" value="<?=$tcc_id?>">
-                <input type="hidden" name="orientador[]" value="<?=$orientador_id?>">
-                <!-- <input type="hidden" name="orientador[]" value="<?=$corientador_id?>"> -->
-                <div class="card shadow mt-2">
-                    <div class="card-header" style="text-align: center;">Dados do Orientador</div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="orientadorTitulo">Título do Orientador</label>
-                                <select name="titulo[]" id="orientadorTitulo" class="form-control">
-                                    <option value="">-</option>
-                                <?php 
-                                   foreach($titulos as $t): 
-                                 ?>
-                                    <option value="<?=$t['id']?>" <?php if($orientador_titulo == $t['id']) echo 'selected'; ?>>
-                                        <?=$t['abv'].' - '.$t['descricao']?>
-                                    </option>
-                                    
-                                <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-9">
-                                <label for="orientador">Nome completo do(a) Orientador(a)</label>
-                                <input type="text" class="form-control" name="nome[]" id="orientador" value="<?= $orientador_nome?>" required="" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="orientadorInstituicao">Instituição que trabalha</label>
-                                <input type="text" class="form-control" id="orientadorInstituicao" name="instituicao[]" value="<?=$orientador_instituicao?>" required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="orientadorTelefone">Telefone</label>
-                                <input type="text" class="form-control" name="telefone[]" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" id="orientadorTelefone" value="<?=$orientador_telefone?>" required="" />
-                            </div>
-                          
-                        </div> <!--mudar a variavel que vai ser´passada-->
-
-                        
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="orientadorEmail">E-mail</label>
-                                <input type="email" class="form-control" name="email[]" id="orientadorEmail" value="<?=$orientador_email?>"  required="" />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer"><button class="btn btn-success">Salvar</button></div>
-                </div>
-            </form>
-
-
-<!--form coorientador-->
-
-			<form action="#" id="formOrientador" value="salvarTcc_orientador.php">
-                <input type="hidden" name="id" value="<?=$tcc_id?>">
-                <!-- <input type="hidden" name="orientador[]" value="<?=$orientador_id?>"> -->
-                <input type="hidden" name="orientador[]" value="<?=$corientador_id?>">
-                <div class="card shadow mt-2">
-                    <div class="card-header" style="text-align: center;">Dados do Coorientador</div>
-                    <div class="card-body">                     
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="corientadorTitulo">Título do Corientador</label>
-                                <select name="titulo[]" id="corientadorTitulo" class="form-control">
-                                    <option value="">Selecione...</option>
-                                <?php 
-                                   foreach($titulos as $t): 
-                                 ?>
-                                    <option value="<?=$t['id']?>" <?php if($corientador_titulo == $t['id']) echo 'selected'; ?>>
-                                        <?=$t['abv'].' - '.$t['descricao']?>
-                                            
-                                    </option>
-                                <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-9">
-                                <label for="corientador">Nome completo do(a) Corientador(a)</label>
-                                <input type="text" class="form-control" name="nome[]" id="corientador" value="<?=$corientador_nome?>" required="" />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="corientadorInstituicao">Instituição que trabalha</label>
-                                <input type="text" class="form-control" id="corientadorInstituicao" value="<?=$corientador_instituicao?>" name="instituicao[]" required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="corientadorTelefone">Telefone 1</label>
-                                <input type="text" class="form-control" name="telefone[]" id="orientadorTelefone" value="<?=$corientador_telefone?>" required="" />
-                            </div>                            
-                        </div>
-
-                         <div class="form-row">
-                            <div class="form-group col">
-                                <label for="corientadorEmail">E-mail</label>
-                                <input type="email" class="form-control" name="email[]" value="<?=$corientador_email?>" id="corientadorEmail" required="" />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer"><button class="btn btn-success">Salvar</button></div>
-                </div>
-            </form>
-
-
-<!--form banca-->
-             <form action="#" id='formBanca' value="salvarTcc_banca.php">
-                <input type="hidden" name="id" value="<?=$tcc_id?>">
-                <input type="hidden" name="avaliador[]" value="<?=$avaliador_id?>">
-                <input type="hidden" name="avaliador[]" value="<?=$cavaliador_id?>">
-                <div class="card shadow mt-2">
-                    <div class="card-header" style="text-align: center;">Dados da Banca Examinadora</div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="avaliadorTitulo">Título do(a) Avaliador(a)</label>
-                                <select name="titulo[]" id="avaliadorTitulo" class="form-control" required="">
-                                    <option value="">Selecione...</option>
-                                <?php 
-                                   foreach($titulos as $t): 
-                                 ?>
-                                    <option value="<?=$t['id']?>" <?php if($avaliador_titulo === $t['id']) echo 'selected'; ?>>
-                                        <?=$t['abv'].' - '.$t['descricao']?></option>
-                                    
-                                <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-9">
-                                <label for="avaliador">Nome completo do(a) Avaliador(a)</label>
-                                <input type="text" class="form-control" name="nome[]" id="avaliador" value="<?=$avaliador_nome?>" required="" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorInstituicao">Instituição que trabalha</label>
-                                <input type="text" class="form-control" id="avaliadorInstituicao" value="<?=$avaliador_instituicao?>" name="instituicao[]" required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorTelefone">Telefone</label>
-                                <input type="text" class="form-control" name="telefone[]" id="avaliadorTelefone" value="<?=$avaliador_telefone?>" required="" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorEmail">E-mail</label>
-                                <input type="email" class="form-control" name="email[]" id="avaliadorEmail" value="<?=$avaliador_email?>" required="" />
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="avaliadorTitulo2">
-                                    Título do(a) Avaliador(a) 2
-                                </label>
-
-                                <select name="titulo[]" id="avaliadorTitulo" class="form-control">
-                                    <option value="">Selecione...</option>
-                                <?php 
-                                   foreach($titulos as $t): 
-                                 ?>
-                                    <option value="<?=$t['id']?>" <?php if($cavaliador_titulo === $t['id']) echo 'selected'; ?>>
-                                        <?=$t['abv'].' - '.$t['descricao']?></option>
-                                    
-                                <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-9">
-                                <label for="avaliador">Nome completo do(a) Avaliador(a)</label>
-                                <input type="text" class="form-control" name="nome[]" id="avaliador" value="<?=$cavaliador_nome?>" required="" />
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group col-md-8">
-                                <label for="avaliadorInstituicao2">Instituição ou empresa que trabalha</label>
-                                <input type="text" class="form-control" id="avaliadorInstituicao2" name="instituicao[]" value="<?=$cavaliador_instituicao?>" required />
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="avaliadorCargo2">Cargo:</label>
-                                <input type="text" class="form-control" id="avaliadorCargo2" name="cargo" value="<?=$cavaliador_cargo?>" placeholder="por em tooltips" required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorOrigem2">Cidade de Origem</label>
-                                <input type="text" class="form-control" id="avaliadorOrigem2" name="cidade" value="<?=$cavaliador_cidade?>" required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorTelefone2">Telefone</label>
-                                <input type="text" class="form-control" id="avaliadorTelefone2" name="telefone[]" value="<?=$cavaliador_telefone?>" required="" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="avaliadorEmail2">E-mail</label>
-                                <input type="email" class="form-control" id="avaliadorEmail2" name="email[]" value="<?=$cavaliador_email?>" required="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-success" type="submit">Salvar</button>
-                    </div>
-                </div>
-                <!--card2-->
-            </form>
+                <a class="nav-link" href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;"><?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
+            </div>           
         </div>
+    </nav>
+    <div class="container mt-5">
+        <form id="form-tcc">
+            <input type="hidden" name="id" id="idTcc">
+            <div class="card shadow">
+                <div class="card-header">TCC</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="tituloTcc">Título do tcc</label>
+                            <input type="text" class="form-control" name="titulo" id="tituloTcc" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="data">Data de Defesa</label>
+                            <input type="date" class="form-control" name="data_avaliacao" id="dataTcc" value="" required="">
+                        </div>
+                    </div>
+                </div><!--card-body-->
+                <div class="card-footer">
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
+            </div>
+        </form>
+        <!--dados orientador-->
+        <form id="formOrientador">
+            <input type="hidden" name="id" id="orientador_id">
+            <div class="card shadow mt-2">
+                <div class="card-header">Dados do Orientador</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="orientador_titulo">Título do Orientador</label>
+                            <select name="titulo" id="orientador_titulo" class="form-control">
+                            <?php foreach ($titulos() as $value): ?>
+                                <option value="<?=$value->id?>"><?="{$value->abv} - {$value->descricao}"?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="orientador_nome">Nome completo</label>
+                            <input type="text" class="form-control" name="nome" id="orientador_nome" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="orientado_instituicao">Instituição que trabalha</label>
+                            <input type="text" class="form-control" id="orientador_instituicao" name="instituicao" value="" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="orientador_telefone">Telefone</label>
+                            <input type="text" class="form-control" name="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" id="orientador_telefone" value="" required="" />
+                        </div>
+                        <div class="form-group col">
+                            <label for="orientador_email">E-mail</label>
+                            <input type="email" class="form-control" name="email" id="orientador_email" value=""  required="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer"><button class="btn btn-success">Salvar</button></div>
+            </div>
+        </form>
+        <!--form coorientador-->
+        <form id="formCoorientador">
+            <input type="hidden" name="coorientador_id" value="">
+            <div class="card shadow mt-2">
+                <div class="card-header">Dados do Coorientador</div>
+                <div class="card-body">                     
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="coorientador_titulo">Título</label>
+                            <select name="titulo" id="coorientador_titulo" class="form-control">
+                                <?php foreach ($titulos() as $value): ?>
+                                    <option value="<?=$value->id?>"><?="{$value->abv} - {$value->descricao}"?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="coorientador_nome">Nome completo</label>
+                            <input type="text" class="form-control" name="nome" id="coorientador_nome" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="coorientador_instituicao">Instituição que trabalha</label>
+                            <input type="text" class="form-control" id="coorientador_instituicao" value="" name="instituicao" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="coorientador_telefone">Telefone</label>
+                            <input type="text" class="form-control" name="telefone" id="coorientador_telefone" value="" required="" />
+                        </div>
+                        <div class="form-group col">
+                            <label for="coorientador_email">E-mail</label>
+                            <input type="email" class="form-control" name="email" value="" id="coorientador_email" required="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer"><button class="btn btn-success" type="submit">Salvar</button></div>
+            </div>
+        </form>
+        <!--form avaliador1-->
+        <form id="formAvaliador">
+            <input type="hidden" name="avaliador_id" value="">
+            <div class="card shadow mt-2">
+                <div class="card-header">Dados do avaliador 1</div>
+                <div class="card-body">                     
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="avaliador_titulo">Título</label>
+                            <select name="titulo" id="avaliador_titulo" class="form-control">
+                                <?php foreach ($titulos() as $value): ?>
+                                    <option value="<?=$value->id?>"><?="{$value->abv} - {$value->descricao}"?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="avaliador_nome">Nome completo</label>
+                            <input type="text" class="form-control" name="nome" id="avaliador_nome" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="avaliador_instituicao">Instituição que trabalha</label>
+                            <input type="text" class="form-control" id="avaliador_instituicao" value="" name="instituicao" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="avaliador_telefone">Telefone</label>
+                            <input type="text" class="form-control" name="telefone" id="avaliador_telefone" value="" required="" />
+                        </div>                            
+                        <div class="form-group col-md">
+                            <label for="avaliador_email">E-mail</label>
+                            <input type="email" class="form-control" name="email" value="" id="avaliador_email" required="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer"><button class="btn btn-success" type="submit">Salvar</button></div>
+            </div>
+        </form>
+         <!--form avaliador2-->
+        <form id="formAvaliador2">
+            <input type="hidden" name="avaliador2_id" value="">
+            <div class="card shadow mt-2 mb-3">
+                <div class="card-header">Dados do avaliador 2</div>
+                <div class="card-body">                     
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="avaliador2_titulo">Título</label>
+                            <select name="titulo" id="avaliador2_titulo" class="form-control">
+                                <?php foreach ($titulos() as $value): ?>
+                                    <option value="<?=$value->id?>"><?="{$value->abv} - {$value->descricao}"?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="avaliador2_nome">Nome completo</label>
+                            <input type="text" class="form-control" name="nome" id="avaliador2_nome" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="avaliador2_instituicao">Instituição ou empresa que trabalha</label>
+                            <input type="text" class="form-control" id="avaliador2_instituicao" value="" name="instituicao" required />
+                        </div>
+                        <div class="form-group col-md">
+                            <label for="avaliador2_cargo">Cargo</label>
+                            <input type="email" class="form-control" name="email" value="" id="avaliador2_cargo" required="" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="avaliador2_telefone">Telefone</label>
+                            <input type="text" class="form-control" name="telefone" id="avaliador2_telefone" value="" required="" />
+                        </div>                            
+                        <div class="form-group col-md">
+                            <label for="avaliador2_email">E-mail</label>
+                            <input type="email" class="form-control" name="email" value="" id="avaliador2_email" required="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer"><button class="btn btn-success" type="submit">Salvar</button></div>
+            </div>
+        </form>
     </div>
-</div>
-
-    
     <!-- Popper.JS -->
-    <script src="js/popper.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Extrax -->
-    <script src="js/funcoes.js"></script>
+    <script src="../../js/funcoes.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
+            /*
+                1 pedente post e put dos avaliadores e orientadores;
+            */
 
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content').toggleClass('active');
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+           let getData = (URL,METHOD) =>{
+                $.ajax({
+                url: URL,
+                type: 'POST',
+                //data: DATA,
+                dataType: 'json',
+                //beforeSend: () =>  this.buttonSubmit.setElement() ,
+                //complete: () =>  this.buttonSubmit.setElement(),
+                success: (d) => METHOD(d),
+                //error: (r) => alert(`Erro ao processar: ${r.status}\nMensagem do servidor: ${r.responseJSON.msg}`)
             });
+           }
+
+           let setFormOrientador = ({id, tcc, nome, titulo, instituicao, telefone, email}) =>{
+                $('#orientador_id').val(id)
+                $('#orientador_titulo').val(titulo);
+                $('#orientador_telefone').val(telefone);
+                $('#orientador_email').val(email);
+                $('#orientador_nome').val(nome);
+                $('#orientador_instituicao').val(instituicao);
+           }
+
+           let setFormCoorientador = ({id, tcc, nome, titulo, instituicao, telefone, email}) =>{
+                $('#coorientador_id').val(id)
+                $('#coorientador_titulo').val(titulo);
+                $('#coorientador_telefone').val(telefone);
+                $('#coorientador_email').val(email);
+                $('#coorientador_nome').val(nome);
+                $('#coorientador_instituicao').val(instituicao);
+           }
+
+           let setFormAvaliador1 = ({id, tcc, nome, titulo, instituicao, telefone, email}) =>{
+                $('#avaliador_id').val(id)
+                $('#avaliador_titulo').val(titulo);
+                $('#avaliador_telefone').val(telefone);
+                $('#avaliador_email').val(email);
+                $('#avaliador_nome').val(nome);
+                $('#avaliador_instituicao').val(instituicao);
+           }
+
+           let setFormAvaliador2 = ({id, tcc, nome, titulo, instituicao, telefone, email, cargo}) =>{
+                $('#avaliador2_id').val(id)
+                $('#avaliador2_titulo').val(titulo);
+                $('#avaliador2_telefone').val(telefone);
+                $('#avaliador2_email').val(email);
+                $('#avaliador2_nome').val(nome);
+                $('#avaliador2_cargo').val(cargo);
+                $('#avaliador2_instituicao').val(instituicao);
+           }
+
+           let setFormTcc = ({id, titulo, data_avaliacao}) =>{
+                $("#idTcc").val(id)
+                $("#tituloTcc").val(titulo)
+                $("#dataTcc").val(data_avaliacao)
+           }
+
+
+           let setForms = () =>{
+               //seta form tcc
+               getData('../../control/get_tcc.php',({tcc,orientador,coorientador,avaliadores}) => {
+
+                    let formTcc = new FormValidate('#form-tcc',new Button('#form-tcc > button[type=submit]'), null);
+                        formTcc.setAction('../../control/put_tcc.php');
+
+                    let formOrientador   = new FormValidate('#formOrientador',   new Button('#formOrientador > button[type=submit]'), null);
+                        formOrientador.setAction('../../control/put_orientador')
+
+                    let formCoorientador = new FormValidate('#formCoorientador', new Button('#formCoorientador > button[type=submit]'), null);
+                        formCoorientador.setAction('../../control/put_coorientador')
+
+                    let formAvaliador    = new FormValidate('#formAvaliador',    new Button('#formAvaliador > button[type=submit]'), null);
+                        formAvaliador.setAction('../../control/put_avaliador')
+
+                    let formAvaliador2   = new FormValidate('#formAvaliador2',   new Button('#formAvaliador2 > button[type=submit]'), null);
+                        formAvaliador2.setAction('../../control/put_avaliador2')
+
+                    if(tcc.id === null){
+                        formTcc.setAction('../../control/post_tcc.php');
+                        formOrientador.disabled();
+                        formCoorientador.disabled();
+                        formAvaliador.disabled();
+                        formAvaliador2.disabled();
+                    }else{
+                        setFormTcc(tcc);
+
+                        if(orientador === null){
+                            formOrientador.setAction('../../control/post_orientador')
+                        }else{
+                            setFormOrientador(orientador)
+                        }
+
+                        if(coorientador === null){
+                            formCoorientador.setAction('../../control/post_coorientador')
+                        }else{
+                            setFormCoorientador(coorientador)
+                        }
+                        
+                        if(avaliadores === null){
+                            formAvaliador.setAction('../../control/post_avaliador')
+                            formAvaliador2.setAction('../../control/post_avaliador2')
+
+                        }else{
+                            setFormAvaliador1(avaliadores['0'])
+
+                            if(avaliadores['1'] !== null)
+                                setFormAvaliador2(avaliadores['1'])
+                        }
+                        
+                    }
+               });
+           }
+
+            setForms();
             
-            $("#formTcc").submit(function(e){
-                e.preventDefault();
-                submitForm($(this).attr('value'),$(this).serialize())
-            });
-
-            $("#formOrientador").submit(function(e){
-                e.preventDefault();
-                submitForm($(this).attr('value'),$(this).serialize())
-            });
-
-            $("#formBanca").submit(function(e){
-                e.preventDefault();
-                submitForm($(this).attr('value'),$(this).serialize())
-            });
-
-            <?php 
-                if($tcc_id == 0){ 
-            ?>
-            $("#formOrientador").find(':input').each(function(i,element){
-                $(element).prop('disabled',true);
-            })
-
-            $("#formBanca").find(':input').each(function(i,element){
-                $(element).prop('disabled',true);
-            })
-            <?php } ?>
         });
     </script>
 </body>

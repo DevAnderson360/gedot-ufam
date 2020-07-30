@@ -201,6 +201,11 @@ class FormValidate {
         }
     }
 
+    setAction(action)
+    {
+        this.form.prop('action',action)
+    }
+
 
     addInvalid(input)
     {
@@ -210,6 +215,16 @@ class FormValidate {
     addValid(input)
     {
         $(input).addClass('is-valid').removeClass('is-invalid');
+    }
+
+    disabled()
+    {
+       this.form.find(':input').prop('disabled', true)
+    }
+
+    enabled()
+    {
+       this.form.find(':input').prop('disabled', false)
     }
 
 }//end class

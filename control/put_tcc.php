@@ -12,8 +12,10 @@
 
 	if($_POST && $access->validaSessionNr())
 		main();
-	else
+	else{
+		echo json_encode(array('status' => 'fail', 'msg' => 'Parâmetros inválidos.'));
 		http_response_code(400);
+	}
 
 	function main()
 	{
