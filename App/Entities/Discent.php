@@ -8,14 +8,14 @@
 	 */
 	class Discent extends \App\Bd\Crud
 	{	
-		public $id;
-		public $nome;
-		public $email;
-		public $telefone;
-		public $matricula;
-		public $semestre;
-		public $ano;
-		public $senha;
+		private $id;
+		private $nome;
+		private $email;
+		private $telefone;
+		private $matricula;
+		private $semestre;
+		private $ano;
+		private $senha;
 
 		
 		//recebe uma conexão com o banco de dados e seta na superclass crud
@@ -26,6 +26,16 @@
 
 		//----METHODS SET
 	
+		/*
+		* Method set $id
+		* @Param: id
+		* @Return: Void
+		*/
+		public function setId ($id)
+		{
+			$this->id = $id;
+		}
+
 		/*
 		* Method set $nome
 		* @Param: nome
@@ -226,7 +236,7 @@
 		* Method getBDdiscente, busca no banco de dados o discente pela matricula
 		* 
 		* @Param: set (define se a consulta deve ou não setar os dados no objeto), default: false
-		* @Return: senha
+		* @Return: boolean
 		*/
 		public function getBDdiscente($set = false)
 		{
@@ -245,6 +255,26 @@
 
 			return false;
 
+		}
+
+		/*
+		* verifica no banco de dados o discente pelo id e senha
+		* Precisar setar antes a matricula e a senha
+		* @Param: null
+		* @Return: bollean
+		*/
+		private function validaSenhaBd()
+		{
+			$sql = "SELECT id FROM discente WHERE matricula = ? and senha = ?";
+
+			$data = self::$crud->select($sql,array($this->matricula, $this->senha),false);
+
+			if($data !== null){
+				$this->id = $data->id; 
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
@@ -278,5 +308,39 @@
 	    	return false;
 		}
 
+		/**
+		 * alterar dados no banco de dados
+		 *
+		 * @return boolean
+		 * @author defaul
+		 **/
+		function put()
+		{
+			//seta tabela para operacao
+ 		    self::$crud->setTableName('discente');
+			return self::$crud->update(array(
+										"nome" 		=> $this->nome,
+										"email" 	=> $this->email,
+										"telefone"  => $this->telefone,
+										"ano" 		=> $this->ano,
+										"semestre"  => $this->semestre,
+										),array("id=" => $this->id));
+		}
 
-	}
+		/**
+		 * alterar senha no banco de dados
+		 * @param $nova senha
+		 * @return boolean
+		 * @author defaul
+		 **/
+		function put_senha($nova)
+		{
+ 		    self::$crud->setTableName('discente');
+
+			if($this->validaSenhaBd())
+				return self::$crud->update(array('senha' => $nova), array('id=' => $this->id));
+
+			return false;
+		}
+
+	}//end class

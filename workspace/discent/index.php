@@ -50,32 +50,7 @@
 </head>
 
 <body>
-    <nav class="mb-1 navbar navbar-expand-lg  navbar-dark" style="background-color: #008B00;">
-        <a class="navbar-brand justify-content-center" href="../../#">Gedot</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-          aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="../../homeAluno.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../dadosAluno.php">Dados Pessoais</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../senha.php">Mudar Senha</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../logoff.php">Sair</a>
-                </li>
-            </ul> 
-            <div style="text-align: right;">
-                <a class="nav-link" href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;"><?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
-            </div>           
-        </div>
-    </nav>
+    <?php include "includes/menu.php" ?>
     <div class="container mt-5">
         <form id="form-tcc">
             <input type="hidden" name="id" id="idTcc">
@@ -289,18 +264,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-           let getData = (URL,METHOD) =>{
-                $.ajax({
-                url: URL,
-                type: 'POST',
-                //data: DATA,
-                dataType: 'json',
-                //beforeSend: () =>  this.buttonSubmit.setElement() ,
-                //complete: () =>  this.buttonSubmit.setElement(),
-                success: (d) => METHOD(d),
-                //error: (r) => alert(`Erro ao processar: ${r.status}\nMensagem do servidor: ${r.responseJSON.msg}`)
-            });
-           }
 
            let setFormOrientador = ({id, tcc, nome, titulo, instituicao, telefone, email}) =>{
                 $('#orientador_id').val(id)

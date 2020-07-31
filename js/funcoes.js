@@ -229,6 +229,23 @@ class FormValidate {
 
 }//end class
 
+/*
+*   busca uma informação com ajax
+*   @Param URL da requisição e function backand
+*/
+let getData = (URL,METHOD) =>{
+        $.ajax({
+        url: URL,
+        type: 'POST',
+        //data: DATA,
+        dataType: 'json',
+        //beforeSend: () =>  this.buttonSubmit.setElement() ,
+        //complete: () =>  this.buttonSubmit.setElement(),
+        success: (d) => METHOD(d),
+        //error: (r) => alert(`Erro ao processar: ${r.status}\nMensagem do servidor: ${r.responseJSON.msg}`)
+    });
+}
+
 function validarCPF(cpf) {  
     cpf = cpf.replace(/[^\d]+/g,'');    
     if(cpf == '') return false; 
