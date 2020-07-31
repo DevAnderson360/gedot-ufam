@@ -1,7 +1,7 @@
 <?php 
 	
 	/**
-	 * inserir novo registro no DB tabela tcc
+	 * altera registro no DB tabela avaliador
 	 *
 	 **/
 
@@ -12,8 +12,10 @@
 
 	if($_POST && $access->validaSessionNr())
 		main();
-	else
+	else{
+		echo json_encode(array('status' => 'fail', 'msg' => 'Parâmetros inválidos.'));
 		http_response_code(400);
+	}
 
 	function main()
 	{
@@ -25,17 +27,20 @@
 		//falta lançar validação
 		//$tcc->setId($_POST['titulo']);
 
-		$tcc->setTitulo($_POST['titulo']);
-
-		$tcc->setDiscente($_SESSION['user_id']);
-
-		$tcc->setDataAvaliacao($_POST['data_avaliacao']);
-
-		if($tcc->post())
+		
+		$id 		 = $_POST['id']; 
+		$nome 		 = $_POST['nome']; 
+		$email 		 = $_POST['email']; 
+		$cargo 		 = empty($_POST['cargo']) ? NULL: $_POST['cargo'];
+		$titulo 	 = $_POST['titulo']; 
+		$cidade 	 = $_POST['cidade']; 
+		$telefone    = $_POST['telefone']; 
+		$instituicao = $_POST['instituicao']; 
+		
+		if($tcc->put_avaliador($id, $titulo, $nome, $instituicao, $telefone, $email, $cidade, $cargo))
 			echo json_encode(array('status' => 'success', 'msg' => 'Sucesso ao salvar.'));
 		else
 			echo json_encode(array('status' => 'fail', 'msg' => 'Erro ao salvar. Tente novamente!'));
-
 	}
 
 

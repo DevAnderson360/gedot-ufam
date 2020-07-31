@@ -222,6 +222,123 @@
 		}
 
 		/**
+		 * Atualiza no banco de dados o orientador
+		 * @param $id, $nome, $titulo, $instituicao, $telefone, $email
+		 * @return boolean
+		 * @author default
+		 **/
+		function put_orientador($id, $nome, $titulo, $instituicao, $telefone, $email)
+		{
+			//seta tabela para operacao
+ 		    self::$crud->setTableName('orientador');
+
+ 		    return self::$crud->update(
+ 		    							array(
+ 		    								"nome" => $nome,
+ 		    								"titulo" => $titulo,
+ 		    								"instituicao" => $instituicao,
+ 		    								"telefone" => $telefone, 
+ 		    								"email" => $email
+ 		    							),
+ 		    							array('id=' => $id));
+
+		}
+
+		/**
+		 * Atualiza no banco de dados o avaliador
+		 * @param $id, $titulo, $nome, $instituicao, $telefone, $email, $cidade, $cargo
+		 * @return boolean
+		 * @author default
+		 **/
+		function put_avaliador($id, $titulo, $nome, $instituicao, $telefone, $email, $cidade, $cargo = null)
+		{
+			//seta tabela para operacao
+ 		    self::$crud->setTableName('avaliador');
+
+
+ 		    return self::$crud->update(
+ 		    							array(
+ 		    								"nome" 		  => $nome, 
+ 		    								"email" 	  => $email, 
+ 		    								"cargo" 	  => $cargo, 		    								
+ 		    								"titulo"      => $titulo, 
+ 		    								"cidade"      => $cidade, 
+ 		    								"telefone"    => $telefone, 
+ 		    								"instituicao" => $instituicao, 
+ 		    							),
+ 		    							array('id=' => $id));
+
+		}
+
+		/**
+		 * inserir no banco de dados um novo regitro de orientador
+		 * @param $titulo, $nome, $instituicao, $telefone, $email, $cidade,[ $tipo = 1]
+		 * @return boolean
+		 * @author defaul
+		 **/
+		function post_orientador($titulo, $nome, $instituicao, $telefone, $email, $tipo = 1)
+		{
+			//seta tabela para operacao
+ 		    self::$crud->setTableName('orientador');
+
+ 		    //seta o id do tcc;
+ 		    $this->setId ();
+
+ 		    $this->id = self::$crud->insert(
+ 		    									array(
+ 		    										"tcc"		  => $this->id,
+ 		    										"tipo"		  => $tipo,
+		 		    								"nome" 		  => $nome, 
+		 		    								"email" 	  => $email, 
+		 		    								"titulo"      => $titulo, 
+		 		    								"telefone"    => $telefone, 
+		 		    								"instituicao" => $instituicao, 
+		 		    							)
+ 		    								);
+
+	    	if($this->id !== null){
+	    		return true;
+	    	}
+
+	    	return false;
+		}
+
+		/**
+		 * inserir no banco de dados o avaliador
+		 * @param  $titulo, $nome, $instituicao, $telefone, $email, $cidade, $cargo
+		 * @return boolean
+		 * @author default
+		 **/
+		function post_avaliador($titulo, $nome, $instituicao, $telefone, $email, $cidade, $cargo = null)
+		{
+			//seta tabela para operacao
+ 		    self::$crud->setTableName('avaliador');
+
+ 		    //seta o id do tcc;
+ 		    $this->setId ();
+
+ 		    $this->id = self::$crud->insert(
+ 		    									array(
+ 		    										"tcc"		  => $this->id,
+ 		    										"nome" 		  => $nome, 
+		 		    								"email" 	  => $email, 
+		 		    								"cargo" 	  => $cargo, 		    								
+		 		    								"titulo"      => $titulo, 
+		 		    								"cidade"      => $cidade, 
+		 		    								"telefone"    => $telefone, 
+		 		    								"instituicao" => $instituicao,
+		 		    							)
+ 		    								);
+
+	    	if($this->id !== null){
+	    		return true;
+	    	}
+
+	    	return false;
+
+		}
+
+		/**
 		 * busca no banco de dados pelos orientadores
 		 * @default $tipo = 1 orientador
 		 * @param $tipo = 1 para orientador ou 2 para coorientador

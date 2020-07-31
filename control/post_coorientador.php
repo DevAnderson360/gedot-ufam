@@ -1,7 +1,7 @@
 <?php 
 	
 	/**
-	 * inserir novo registro no DB tabela tcc
+	 * inseri registro no DB tabela orientador
 	 *
 	 **/
 
@@ -12,8 +12,10 @@
 
 	if($_POST && $access->validaSessionNr())
 		main();
-	else
+	else{
+		echo json_encode(array('status' => 'fail', 'msg' => 'Parâmetros inválidos.'));
 		http_response_code(400);
+	}
 
 	function main()
 	{
@@ -25,17 +27,19 @@
 		//falta lançar validação
 		//$tcc->setId($_POST['titulo']);
 
-		$tcc->setTitulo($_POST['titulo']);
+		$nome 		 = $_POST['nome'];
+		$email 	     = $_POST['email'];
+		$titulo 	 = $_POST['titulo'];
+		$telefone 	 = $_POST['telefone'];
+		$instituicao = $_POST['instituicao'];
 
 		$tcc->setDiscente($_SESSION['user_id']);
 
-		$tcc->setDataAvaliacao($_POST['data_avaliacao']);
-
-		if($tcc->post())
+		
+		if($tcc->post_orientador($titulo, $nome, $instituicao, $telefone, $email, 2))
 			echo json_encode(array('status' => 'success', 'msg' => 'Sucesso ao salvar.'));
 		else
 			echo json_encode(array('status' => 'fail', 'msg' => 'Erro ao salvar. Tente novamente!'));
-
 	}
 
 

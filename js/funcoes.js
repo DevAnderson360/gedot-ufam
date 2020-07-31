@@ -164,7 +164,7 @@ class FormValidate {
                 complete: () =>  this.buttonSubmit.setElement(),
                 success: (d) => this.successMethod(d),
                 error: (r) =>  {
-                	//console.log(r)
+                	console.log(r)
                 	alert(`Erro ao processar: ${r.status}\nMensagem do servidor: ${r.responseJSON.msg}`)
                 } ,
             });

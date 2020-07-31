@@ -38,15 +38,6 @@
 		else
 			echo json_encode(array('status' => 'fail', 'msg' => 'Erro ao salvar. Tente novamente!'));
 
-	   /* if(!$discent->getBDdiscente()){
-			if($discent->post())
-				echo json_encode(array('status' => 'success', 'msg' => 'Cadastro realizado com sucesso.', "id" => $discent->id));
-			else
-				echo json_encode(array('status' => 'fail', 'msg' => 'Erro no cadastro.'));
-		}else{
-			echo json_encode(array('status' => 'fail', 'msg' => 'Matrícula já está cadastrada.'));
-		}*/
-
 	}
 
 

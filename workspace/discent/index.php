@@ -142,7 +142,7 @@
         </form>
         <!--form coorientador-->
         <form id="formCoorientador">
-            <input type="hidden" name="coorientador_id" value="">
+            <input type="hidden" name="id" id="coorientador_id" value="">
             <div class="card shadow mt-2">
                 <div class="card-header">Dados do Coorientador</div>
                 <div class="card-body">                     
@@ -182,7 +182,7 @@
         </form>
         <!--form avaliador1-->
         <form id="formAvaliador">
-            <input type="hidden" name="avaliador_id" value="">
+            <input type="hidden" name="id" id="avaliador_id" value="">
             <div class="card shadow mt-2">
                 <div class="card-header">Dados do avaliador 1</div>
                 <div class="card-body">                     
@@ -216,13 +216,19 @@
                             <input type="email" class="form-control" name="email" value="" id="avaliador_email" required="" />
                         </div>
                     </div>
+                    <div class="form-row">                            
+                        <div class="form-group col-md">
+                            <label for="avaliador_cidade">Origem</label>
+                            <input type="text" class="form-control" name="cidade" value="" id="avaliador_cidade" required="" />
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer"><button class="btn btn-success" type="submit">Salvar</button></div>
             </div>
         </form>
          <!--form avaliador2-->
         <form id="formAvaliador2">
-            <input type="hidden" name="avaliador2_id" value="">
+            <input type="hidden" name="id" id="avaliador2_id" value="">
             <div class="card shadow mt-2 mb-3">
                 <div class="card-header">Dados do avaliador 2</div>
                 <div class="card-body">                     
@@ -247,7 +253,7 @@
                         </div>
                         <div class="form-group col-md">
                             <label for="avaliador2_cargo">Cargo</label>
-                            <input type="email" class="form-control" name="email" value="" id="avaliador2_cargo" required="" />
+                            <input type="text" class="form-control" name="cargo" value="" id="avaliador2_cargo" required="" />
                         </div>
                     </div>
                     <div class="form-row">
@@ -258,6 +264,12 @@
                         <div class="form-group col-md">
                             <label for="avaliador2_email">E-mail</label>
                             <input type="email" class="form-control" name="email" value="" id="avaliador2_email" required="" />
+                        </div>
+                    </div>
+                     <div class="form-row">                            
+                        <div class="form-group col-md">
+                            <label for="avaliador2_cidade">Origem</label>
+                            <input type="text" class="form-control" name="cidade" value="" id="avaliador2_cidade" required="" />
                         </div>
                     </div>
                 </div>
@@ -276,10 +288,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-
-            /*
-                1 pedente post e put dos avaliadores e orientadores;
-            */
 
            let getData = (URL,METHOD) =>{
                 $.ajax({
@@ -312,16 +320,17 @@
                 $('#coorientador_instituicao').val(instituicao);
            }
 
-           let setFormAvaliador1 = ({id, tcc, nome, titulo, instituicao, telefone, email}) =>{
+           let setFormAvaliador1 = ({id, tcc, nome, titulo, instituicao, telefone, email, cidade}) =>{
                 $('#avaliador_id').val(id)
                 $('#avaliador_titulo').val(titulo);
                 $('#avaliador_telefone').val(telefone);
                 $('#avaliador_email').val(email);
                 $('#avaliador_nome').val(nome);
                 $('#avaliador_instituicao').val(instituicao);
+                $('#avaliador_cidade').val(cidade);
            }
 
-           let setFormAvaliador2 = ({id, tcc, nome, titulo, instituicao, telefone, email, cargo}) =>{
+           let setFormAvaliador2 = ({id, tcc, nome, titulo, instituicao, telefone, email, cargo, cidade}) =>{
                 $('#avaliador2_id').val(id)
                 $('#avaliador2_titulo').val(titulo);
                 $('#avaliador2_telefone').val(telefone);
@@ -329,6 +338,8 @@
                 $('#avaliador2_nome').val(nome);
                 $('#avaliador2_cargo').val(cargo);
                 $('#avaliador2_instituicao').val(instituicao);
+                $('#avaliador2_cidade').val(cidade);
+
            }
 
            let setFormTcc = ({id, titulo, data_avaliacao}) =>{
@@ -346,16 +357,16 @@
                         formTcc.setAction('../../control/put_tcc.php');
 
                     let formOrientador   = new FormValidate('#formOrientador',   new Button('#formOrientador > button[type=submit]'), null);
-                        formOrientador.setAction('../../control/put_orientador')
+                        formOrientador.setAction('../../control/put_orientador.php')
 
                     let formCoorientador = new FormValidate('#formCoorientador', new Button('#formCoorientador > button[type=submit]'), null);
-                        formCoorientador.setAction('../../control/put_coorientador')
+                        formCoorientador.setAction('../../control/put_orientador.php')
 
                     let formAvaliador    = new FormValidate('#formAvaliador',    new Button('#formAvaliador > button[type=submit]'), null);
-                        formAvaliador.setAction('../../control/put_avaliador')
+                        formAvaliador.setAction('../../control/put_avaliador.php')
 
                     let formAvaliador2   = new FormValidate('#formAvaliador2',   new Button('#formAvaliador2 > button[type=submit]'), null);
-                        formAvaliador2.setAction('../../control/put_avaliador2')
+                        formAvaliador2.setAction('../../control/put_avaliador.php')
 
                     if(tcc.id === null){
                         formTcc.setAction('../../control/post_tcc.php');
@@ -367,28 +378,28 @@
                         setFormTcc(tcc);
 
                         if(orientador === null){
-                            formOrientador.setAction('../../control/post_orientador')
+                            formOrientador.setAction('../../control/post_orientador.php')
                         }else{
                             setFormOrientador(orientador)
                         }
 
                         if(coorientador === null){
-                            formCoorientador.setAction('../../control/post_coorientador')
+                            formCoorientador.setAction('../../control/post_coorientador.php')
                         }else{
                             setFormCoorientador(coorientador)
                         }
                         
-                        if(avaliadores === null){
-                            formAvaliador.setAction('../../control/post_avaliador')
-                            formAvaliador2.setAction('../../control/post_avaliador2')
+                       if(avaliadores === null){
+                            formAvaliador.setAction('../../control/post_avaliador.php')
+                            formAvaliador2.disabled();
+                       }else{
+                            setFormAvaliador1(avaliadores['0']);
 
-                        }else{
-                            setFormAvaliador1(avaliadores['0'])
-
-                            if(avaliadores['1'] !== null)
+                            if(avaliadores['1'] === undefined)
+                                formAvaliador2.setAction('../../control/post_avaliador.php')
+                            else
                                 setFormAvaliador2(avaliadores['1'])
-                        }
-                        
+                       }                        
                     }
                });
            }
