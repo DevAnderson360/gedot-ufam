@@ -10,6 +10,7 @@
 	{	
 		private $id;
 		private $nome;
+		private $curso;
 		private $email;
 		private $telefone;
 		private $matricula;
@@ -44,6 +45,16 @@
 		public function setNome ($nome)
 		{
 			$this->nome = $nome;
+		}
+
+		/*
+		* Method set $curso
+		* @Param: $curso
+		* @Return: Void
+		*/
+		public function setCurso ($curso)
+		{
+			$this->curso = $curso;
 		}
 
 
@@ -135,6 +146,17 @@
 			return $this->nome;
 		}
 
+		/*
+		* Method get $curso
+		* @Param: void
+		* @Return: curso
+		*/
+		public function getCurso ()
+		{
+			return $this->curso;
+		}
+
+
 
 		/*
 		* Method get $email
@@ -209,6 +231,7 @@
 			return array(
 				"id" 		=> $this->id,
 				"nome" 		=> $this->nome,
+				"curso" 	=> $this->curso,
 				"email" 	=> $this->email,
 				"telefone"  => $this->telefone,
 				"matricula" => $this->matricula,
@@ -233,16 +256,16 @@
 		}
 
 		/*
-		* Method getBDdiscente, busca no banco de dados o discente pela matricula
+		* Method getBDdiscente, busca no banco de dados o discente pela matricula ou  id
 		* 
 		* @Param: set (define se a consulta deve ou não setar os dados no objeto), default: false
 		* @Return: boolean
 		*/
 		public function getBDdiscente($set = false)
 		{
-			$sql = "SELECT * FROM discente WHERE matricula = ?";
+			$sql = "SELECT * FROM discente WHERE matricula = ? OR id = ?";
 
-			$data = self::$crud->select($sql,array($this->matricula),false);
+			$data = self::$crud->select($sql,array($this->matricula, $this->id),false);
 
 			if($data !== null){
 				
@@ -285,7 +308,9 @@
 		private function setDataBd ($data)
 		{
 			$this->id		= $data->id;
+			$this->matricula= $data->matricula;
 			$this->nome		= $data->nome;
+			$this->curso	= $data->curso;
 			$this->email	= $data->email;
 			$this->telefone	= $data->telefone;
 			$this->semestre	= $data->semestre;
@@ -320,6 +345,7 @@
  		    self::$crud->setTableName('discente');
 			return self::$crud->update(array(
 										"nome" 		=> $this->nome,
+										"curso"  	=> $this->curso,
 										"email" 	=> $this->email,
 										"telefone"  => $this->telefone,
 										"ano" 		=> $this->ano,

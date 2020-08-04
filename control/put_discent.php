@@ -31,6 +31,7 @@
 		$discent->setTelefone( $_POST['telefone']);
 		$discent->setSemestre( $_POST['semestre']);
 		$discent->setAno($_POST['ano']);
+		$discent->setCurso(1);
 
 
 

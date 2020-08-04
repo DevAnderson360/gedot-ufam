@@ -9,7 +9,7 @@
 	// instantiate and use the dompdf class
 	$dompdf = new Dompdf();
 
-
+  $semestre = $_POST["discente_semestre"] == 1 ? "primeiro" : "segundo";
 
 	$html = '<!DOCTYPE html>
 <html lang="pt-br">
@@ -82,7 +82,7 @@
       <tr>
         <td>
             <p style="text-indent:4em; font-weight: normal; text-align: justify; line-height: 1.5; font-family: \'Times New Roman\', Times, serif; font-size: 14">
-              DECLARAMOS para os devidos fins que o(a) <b>FULANO DA SILVA JUNIOR SÁ (Universidade Federal do Amazonas)</b> e o(a) <b>CICLANO DA SILVA LIMA SÁ (IES ou Empresa)</b> participaram, no primeiro semestre acadêmico de 2020, como membros da Banca Examinadora do Trabalho de Conclusão de Curso intitulado <b>Criando documentos .PDF dinamicamente utilizando a Lib PHP domPDF</b>, do(a) discente do curso de Sistemas de Informação <b>ANTONIO ACACIO AQUINO ALMEIDA</b>, orientado pelo Prof. Dra <b>MAIA MACEDO MELO MENEZES</b> e defendido no dia 06 de agosto de 2020.
+              DECLARAMOS para os devidos fins que o(a) <b>'.$_POST['avaliador_nome'].' ('.$_POST['avaliador_instituicao'].')</b> e o(a) <b>'.$_POST['avaliador2_nome'].' ('.$_POST['avaliador2_instituicao'].')</b> participaram, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', como membros da Banca Examinadora do Trabalho de Conclusão de Curso intitulado <b>'.$_POST["tcc_titulo"].'</b>, do(a) discente do curso de Sistemas de Informação <b>'.$_POST["discente_nome"].'</b>, orientado pelo Prof. '.$_POST["orientador_titulo"].' <b>'.$_POST["orientador_nome"].'</b> e defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
             </p>
         </td>
       </tr>
@@ -90,7 +90,7 @@
 	
 	<div style="text-align: right; margin-top: 100;">
 		<div>
-			Itacoatiara, 12 de agosto de 2020.
+			'.\App\Utility\Tools::nowDate().'.
 		</div>
 		<div style="margin-top: 50px; text-align: center">
 			____________________________________________________<br>

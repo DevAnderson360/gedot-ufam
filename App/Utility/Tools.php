@@ -21,4 +21,30 @@
 		{
 			return json_encode(array('status' => $status, 'msg' => $msg, 'data' => $dados));
 		}
+
+		/**
+		 * retorna data atual
+		 *
+		 * @return string 
+		 * @author Barbara Milena
+		 **/
+		static function nowDate()
+		{
+			setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+			date_default_timezone_set('America/Manaus');
+			return strftime('Itacoatiara, %d de %B de %Y', strtotime('today'));
+		}
+
+		/**
+		 * converte data atual
+		 *
+		 * @return string 
+		 * @author Barbara Milena
+		 **/
+		static function dateFormat($date)
+		{
+			setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+			date_default_timezone_set('America/Manaus');
+			return strftime('%d de %B de %Y', strtotime($date));
+		}
 	} // END class Tools 

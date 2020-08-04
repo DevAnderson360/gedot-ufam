@@ -104,12 +104,9 @@
 
                 let form = new FormValidate('form',new Button('form > button[type=submit]'), null);
                     form.setAction('../../control/put_discent.php');
-
-
             });
 
         });
     </script>
 </body>
-
 </html>

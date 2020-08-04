@@ -75,19 +75,19 @@
     </div>
     <div style="margin-top: 10;">
 		<p style="text-indent:4em" >
-			Ao cumprimentá-lo(a) cordialmente, venho, por meio deste, entregar uma cópia do Trabalho de Conclusão de Curso, do período <b>2020/1</b>
-		elaborado pelo(a) aluno(a) <b>Fulano filho de ciclano de tal junior</b>.
+			Ao cumprimentá-lo(a) cordialmente, venho, por meio deste, entregar uma cópia do Trabalho de Conclusão de Curso, do período <b>'.$_POST["discente_ano"].'/'.$_POST['discente_semestre'].'</b>
+		elaborado pelo(a) aluno(a) <b>'.$_POST['discente_nome'].'.</b>
 		</p>
     </div>
 	
 	<div style="text-align: center; margin-top: 100;">
 		<div>
-			Itacoatiara, 12 de agosto de 2020.
+			'.\App\Utility\Tools::nowDate().'.
 		</div>
 		<div style="margin-top: 50px;">
 			____________________________________________________<br>
 			Profa. Dra. Odette Mestrinho Passos<br>
-        	Professora da Disciplina
+        	Professor(a) da Disciplina
 
 		</div>
 	</div>

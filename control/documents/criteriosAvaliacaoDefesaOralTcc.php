@@ -78,11 +78,11 @@
 		</tr>
 		<tr>
 			<td colspan="3" style="text-align: left; font-weight: normal;">
-				Aluno(a):<br> 
-				Título do Trabalho:<br> 
-				Professor(a) Orientador(a):<br> 
-				Professor(a) Coorientador(a):<br>
-				Período:<br>
+				Aluno(a): <b>'.$_POST["discente_nome"].'</b><br> 
+				Título do Trabalho: <b>'.$_POST["tcc_titulo"].'</b><br>
+				Professor(a) Orientador(a): <b>'.$_POST["orientador_nome"].'</b><br> 
+				Professor(a) Coorientador(a): <b>'.$_POST["coorientador_nome"].'</b><br>
+				Período: <b>'.$_POST["discente_ano"].'/'.$_POST["discente_semestre"].'</b><br>
 			</td>
 		</tr>
 		<tr>
@@ -153,7 +153,7 @@
 	<br>
 	<div style="text-align: right;">
 		<div>
-			Itacoatiara, 12 de agosto de 2020.
+			'.\App\Utility\Tools::nowDate().'.
 		</div>
 		<div style="margin-top: 50px;">
 			____________________________________________________<br>

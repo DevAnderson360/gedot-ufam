@@ -82,7 +82,7 @@
       <tr>
         <td>
             <p style="font-weight: normal; text-align: justify; line-height: 1.5; font-family: \'Times New Roman\', Times, serif; font-size: 14">
-              DECLARAMOS para os devidos fins que o(a) '.$_POST["orientador_titulo"].' <b>'.$_POST["orientador_nome"].' ('.$_POST["orientador_instituicao"].')</b> orientou, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', o discente do curso de Sistemas de Informação <b>'.$_POST['discente_nome'].'</b> em seu Trabalho de Conclusão de Curso intitulado <i>'.$_POST['tcc_titulo'].'</i>, defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
+              DECLARAMOS para os devidos fins que o(a) '.$_POST["coorientador_titulo"].' <b>'.$_POST["coorientador_nome"].' ('.$_POST["coorientador_instituicao"].')</b> coorientou, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', o discente do curso de Sistemas de Informação <b>'.$_POST['discente_nome'].'</b> em seu Trabalho de Conclusão de Curso intitulado <i>'.$_POST['tcc_titulo'].'</i>, defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
             </p>
         </td>
       </tr>

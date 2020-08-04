@@ -41,11 +41,6 @@
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="../../js/jquery.min.js"></script>
 
-    <script src="../../js/jquery.mask.min.js"></script>
-
-    <!-- Font Awesome JS -->
-    <script defer src="../../js/solid.js"></script>
-    <script defer src="../../js/fontawesome.js"></script>
 
 </head>
 
@@ -257,8 +252,6 @@
     <!-- Bootstrap JS -->
     <script src="../../js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller -->
-    <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- Extrax -->
     <script src="../../js/funcoes.js"></script>
 
     <script type="text/javascript">

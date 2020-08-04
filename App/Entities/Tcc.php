@@ -37,7 +37,12 @@
 
 			$data = self::$crud->select($sql,array($this->discente),false);
 
-			$this->id = $data->id;
+			if($data === null)
+				$id = 0;
+			else
+				$id = $data->id;
+
+			$this->id = $id;
 		}
 	
 		
@@ -73,6 +78,17 @@
 		
 		//----METHODS GET
 	
+		
+		/*
+		*Method get id
+		* @Param: Void
+		* @Return:id
+		*/
+		public function getId ()
+		{
+			return $this->id;
+		}
+			
 		
 		/*
 		*Method get $titulo
@@ -114,6 +130,39 @@
 			return $this->registro;
 		}
 
+		/*
+		*Method get orientador
+		* @Param: Void
+		* @Return:orientador
+		*/
+		public function getOrientador ()
+		{
+			$this->orientador = $this->setOrientador();
+			return $this->orientador;
+		}
+
+		/*
+		*Method get coorientador
+		* @Param: Void
+		* @Return:coorientador
+		*/
+		public function getCoorientador()
+		{
+			$this->coorientador = $this->setOrientador(2);
+			return $this->coorientador;
+		}
+
+		/*
+		*Method get avaliadores
+		* @Param: Void
+		* @Return:avaliadores
+		*/
+		public function getAvaliadores()
+		{
+			$this->avaliadores = $this->setAvaliadores();
+			return $this->avaliadores;
+		}
+
 		///--------------------------
 		///--------------------------
 		///--------------------------
@@ -148,10 +197,6 @@
 			if($data !== null){
 				if($set){
 					$this->setDataBd($data);
-					$this->orientador   = $this->getOrientador();
-					$this->coorientador = $this->getOrientador(2);
-					$this->avaliadores = $this->getAvaliadores();
-
 				}
 				return true;
 			}
@@ -181,6 +226,14 @@
 		public function objectJson()
 		{
 			$this->getBDTcc(true);
+
+			$this->getOrientador();
+
+			 $this->getOrientador();
+
+			 $this->getCoorientador();
+
+			 $this->getAvaliadores();
 
 			return json_encode(
 								array(
@@ -345,14 +398,30 @@
 		 * @return orientadores
 		 * @author default
 		 **/
-		function getOrientador($tipo = 1)
+		function setOrientador($tipo = 1)
 		{
  		    //seta o id do tcc;
  		    $this->setId ();
 
-			$sql = "SELECT tipo, id, tcc, nome,titulo,instituicao, telefone, email, tipo, registro FROM `orientador` WHERE orientador.tcc = ? and orientador.tipo = ?";
+			$sql = "SELECT tipo, id, tcc, nome,titulo,instituicao, telefone, email, registro FROM `orientador` WHERE orientador.tcc = ? and orientador.tipo = ?";
 
-			return self::$crud->select($sql,array($this->id, $tipo),false);
+			$dados = self::$crud->select($sql,array($this->id, $tipo),false);
+
+			$object =  new \App\Entities\Orientador();
+
+			if($dados !== null){
+				$object->id = $dados->id;
+				$object->tipo = $dados->tipo;
+				$object->tcc = $dados->tcc;
+				$object->nome = $dados->nome;
+				$object->titulo = $dados->titulo;
+				$object->instituicao = $dados->instituicao;
+				$object->telefone = $dados->telefone;
+				$object->email = $dados->email;
+				$object->registro = $dados->registro;
+			}
+
+			return $object;
 
 		}
 
@@ -363,16 +432,44 @@
 		 * @return avaliadores
 		 * @author default
 		 **/
-		function getAvaliadores()
+		function setAvaliadores()
 		{
+
+			function set($obj, $dados)
+			{
+				$obj->id = $dados->id;
+				$obj->tcc = $dados->tcc;
+				$obj->titulo = $dados->titulo;
+				$obj->nome = $dados->nome;
+				$obj->instituicao = $dados->instituicao;
+				$obj->telefone = $dados->telefone;
+				$obj->email = $dados->email;
+				$obj->cidade = $dados->cidade;
+				$obj->cargo = $dados->cargo;
+				$obj->registro = $dados->registro;
+			}
+
  		    //seta o id do tcc;
  		    $this->setId ();
 
 			$sql = "SELECT * FROM `avaliador` WHERE avaliador.tcc = ?";
 
-			return self::$crud->select($sql,array($this->id),true);
+			$dados = self::$crud->select($sql,array($this->id),true);
+
+			$object =  new \App\Entities\Avaliador();
+			$object2 =  new \App\Entities\Avaliador();
+
+			if(!empty($dados['0']))
+				set($object, $dados['0']);
+
+			if(!empty($dados['1']))
+				set($object2, $dados['1']);
+
+
+			return array($object, $object2);
 
 		}
+			
 
 
 	}//end class	

@@ -26,10 +26,12 @@
 		$discent->setSemestre( $_POST['semestre']);
 		$discent->setAno( $_POST['ano']);
 		$discent->setSenha( $_POST['senha']);
+		//arrumar
+		$discent->setCurso(1);
 
 	    if(!$discent->getBDdiscente()){
 			if($discent->post())
-				echo json_encode(array('status' => 'success', 'msg' => 'Cadastro realizado com sucesso.', "id" => $discent->id));
+				echo json_encode(array('status' => 'success', 'msg' => 'Cadastro realizado com sucesso.', "id" => $discent->getId()));
 			else
 				echo json_encode(array('status' => 'fail', 'msg' => 'Erro no cadastro.'));
 		}else{
