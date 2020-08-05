@@ -1,11 +1,28 @@
 <?php
+    require_once "../../vendor/autoload.php";
+
+    #valida a sessao
+    $access = new \App\Utility\Access();
+    $access->validaSession("../../index.html");
+
+
+    //pegar dados
+    $crud =  \App\Bd\Crud::getInstance(\App\Bd\Database::conexao());
+
+    $sql = "SELECT * FROM `curso`";
+
+    $cursos = $crud->select($sql);
+
+
+
+    //default
     $page = 1;
 
-    $ano = date("Y") ;
+    $curso_default = 1;
 
-    $semestre = date('n') < 7  ? 1 : 2;
-
-    $curso = 1
+    $ano_default = date("Y") ;
+    
+    $semestre_default = date('n') < 7  ? 1 : 2;
  ?>
 <!DOCTYPE html>
 <html>
@@ -69,20 +86,25 @@
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="ano">Ano</label>
-                        <input type="text" class="form-control" name="ano" id="ano" value="<?=$ano?>" maxlength="4" required="">
+                        <input type="text" class="form-control" name="ano" id="ano" value="<?=$ano_default?>" maxlength="4" required="">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="semestre">Semestre</label>
                         <select name="semestre" id="semestre" class="form-control" required="">
-                            <option value="1" <?php if($semestre === 1) echo "selected" ?> >1</option>
-                            <option value="2" <?php if($semestre === 2) echo "selected" ?> >2</option>
+                            <option value="1" <?php if($semestre_default === 1) echo "selected" ?> >1º</option>
+                            <option value="2" <?php if($semestre_default === 2) echo "selected" ?> >2º</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md">
                          <label for="curso">Curso</label>
                         <select name="curso" id="curso" class="form-control" required="">
-                            <option value="1" <?php if($curso === 1) echo "selected" ?> >1</option>
-                            <option value="2" <?php if($curso === 2) echo "selected" ?> >2</option>
+                            <?php 
+
+                                if(!empty($cursos))
+                                    foreach ($cursos as $value):
+                             ?>
+                            <option value="<?=$value->id?>" <?php if($curso_default === $value->id) echo "selected" ?> ><?=$value->descricao?>.</option>
+                            <?php   endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -92,7 +114,7 @@
                 </div>
             </form>
             <div class="table-responsive mt-5">
-                <label>Filtro :: Sistemas de informação > 2020 > 1</label>
+                <label>Filtro :: <em id="label_filtro">Sistemas de informação > 2020 > 1</em></label>
                 <table class="table table-border-less">
                     <thead>
                         <tr>
@@ -141,6 +163,9 @@
                 let semestre = $('#semestre').val();
 
                 let DATA = {ano, curso, semestre};
+
+
+                $("#label_filtro").text(`${$('#curso :selected').text()}>${ano}>${semestre}`);
 
                 getData('../../control/get_group.php',({data})=>{
                     discentes = data;
