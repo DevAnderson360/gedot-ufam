@@ -3,7 +3,7 @@
 
     #valida a sessao
     $access = new \App\Utility\Access();
-    $access->validaSession("../../index.html");
+    $access->validaSession("../../");
 
     $page = 3;
  ?>
