@@ -87,10 +87,10 @@
 				    	Comprovante de entrega do TCC para menbros da banca
 				    </option>
 				    <option value="d">
-				    	Declaração de Orientação de TCC (Orientador) -- falta setar professor da disciplina
+				    	Declaração de Orientação de TCC (Orientador)
 				    </option>
 				    <option value="e">
-				    	Declaração de Orientação de TCC (Coorientador) -- falta setar professor da disciplina
+				    	Declaração de Orientação de TCC (Coorientador)
 				    </option>
 				    <option value="f">
 				    	Declaração de Avaliação de TCC

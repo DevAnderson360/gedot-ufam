@@ -5,6 +5,9 @@
   $log = new \App\Utility\Access();
   $log->validaSession("./");
 
+  //docente
+  $docente = "{$_SESSION['user_titulo']} {$_SESSION['user_name']}";
+
 	// reference the Dompdf namespace
 	use Dompdf\Dompdf;
 
@@ -97,7 +100,7 @@
 		</div>
 		<div style="margin-top: 50px; text-align: center">
 			____________________________________________________<br>
-			Profa. Dra. Odette Mestrinho Passos<br>
+			'.$docente.'<br>
         	Professora da Disciplina
 
 		</div>
