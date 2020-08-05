@@ -1,3 +1,15 @@
+<?php 
+    
+    require_once "vendor/autoload.php";
+
+    //pegar dados
+    $crud =  \App\Bd\Crud::getInstance(\App\Bd\Database::conexao());
+
+    $sql = "SELECT * FROM `curso`";
+
+    $cursos = $crud->select($sql);
+    
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,6 +112,21 @@
                         <div class="form-group col">
                             <label for="cadTelefone">Telefone:</label>
                             <input type="text" class="form-control" name="telefone" id="cadTelefone" placeholder="(92) 99999-9999" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cadCurso">Curso:</label>
+                            <select name="curso" id="cadCurso" required="" class="form-control">
+                                <option value="">Selecione...</option>
+                                <?php 
+
+                                    if(!empty($cursos))
+                                        foreach ($cursos as $value):
+                                 ?>
+                                <option value="<?=$value->id?>"><?=$value->descricao?>.</option>
+                            <?php   endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">

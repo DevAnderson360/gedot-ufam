@@ -5,6 +5,14 @@
     $access = new \App\Utility\Access();
     $access->validaSession("../../index.html");
 
+
+    //pegar dados
+    $crud =  \App\Bd\Crud::getInstance(\App\Bd\Database::conexao());
+
+    $sql = "SELECT * FROM `curso`";
+
+    $cursos = $crud->select($sql);
+
     $page = 2;
  ?>
 <!DOCTYPE html>
@@ -53,6 +61,21 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
+                        <label for="curso">Curso:</label>
+                        <select name="curso" id="curso" required="" class="form-control">
+                            <option value="">Selecione...</option>
+                            <?php 
+
+                                if(!empty($cursos))
+                                    foreach ($cursos as $value):
+                             ?>
+                            <option value="<?=$value->id?>"><?=$value->descricao?>.</option>
+                        <?php   endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
                         <label for="matricula">Matricula:</label>
                         <input type="text" class="form-control" id="matricula" disabled="">
                     </div>
@@ -93,7 +116,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            getData("../../control/get_discent.php",({nome,email,telefone,matricula,semestre,ano}) => {
+            getData("../../control/get_discent.php",({nome,email,telefone,matricula,semestre,ano,curso}) => {
+
 
                 $("#nome").val(nome);
                 $("#email").val(email);
@@ -101,6 +125,7 @@
                 $("#matricula").val(matricula);
                 $("#semestre").val(semestre);
                 $("#ano").val(ano);
+                $("#curso").val(curso);
 
                 let form = new FormValidate('form',new Button('form > button[type=submit]'), null);
                     form.setAction('../../control/put_discent.php');

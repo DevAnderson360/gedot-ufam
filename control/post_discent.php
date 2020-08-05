@@ -18,7 +18,6 @@
 		$discent = new \App\Entities\Discent(\App\Bd\Database::conexao());
 
 		//set data
-		//falta lançar validação
 		$discent->setNome( $_POST['nome']);
 		$discent->setEmail( $_POST['email']);
 		$discent->setTelefone( $_POST['telefone']);
@@ -26,8 +25,7 @@
 		$discent->setSemestre( $_POST['semestre']);
 		$discent->setAno( $_POST['ano']);
 		$discent->setSenha( $_POST['senha']);
-		//arrumar
-		$discent->setCurso(1);
+		$discent->setCurso($_POST['curso']);
 
 	    if(!$discent->getBDdiscente()){
 			if($discent->post())
