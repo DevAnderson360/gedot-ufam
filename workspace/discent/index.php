@@ -8,8 +8,6 @@
     //controle de pagina
     $page = 1;
 
-
-
     $titulos = function()
     {
        $conn = \App\Bd\Database::conexao();
@@ -25,7 +23,7 @@
 
  ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,15 +33,13 @@
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../css/siderbar.css">
+
+    <!-- material design icons -->
+    <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="../../js/jquery.min.js"></script>
-
-
 </head>
-
 <body>
     <?php include "includes/menu.php" ?>
     <div class="container mt-5">
@@ -107,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer"><button class="btn btn-success">Salvar</button></div>
+                <div class="card-footer"><button class="btn btn-success" type="submit">Salvar</button></div>
             </div>
         </form>
         <!--form coorientador-->
@@ -247,8 +243,6 @@
             </div>
         </form>
     </div>
-    <!-- Popper.JS -->
-    <script src="../../js/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="../../js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller -->
@@ -309,19 +303,19 @@
                //seta form tcc
                getData('../../control/get_tcc.php',({tcc,orientador,coorientador,avaliadores}) => {
 
-                    let formTcc = new FormValidate('#form-tcc',new Button('#form-tcc > button[type=submit]'), null);
+                    let formTcc = new FormValidate('#form-tcc',new Button('#form-tcc :button[type=submit]'), null);
                         formTcc.setAction('../../control/put_tcc.php');
 
-                    let formOrientador   = new FormValidate('#formOrientador',   new Button('#formOrientador > button[type=submit]'), null);
+                    let formOrientador   = new FormValidate('#formOrientador',   new Button('#formOrientador :button[type=submit]'), null);
                         formOrientador.setAction('../../control/put_orientador.php')
 
-                    let formCoorientador = new FormValidate('#formCoorientador', new Button('#formCoorientador > button[type=submit]'), null);
+                    let formCoorientador = new FormValidate('#formCoorientador', new Button('#formCoorientador :button[type=submit]'), null);
                         formCoorientador.setAction('../../control/put_orientador.php')
 
-                    let formAvaliador    = new FormValidate('#formAvaliador',    new Button('#formAvaliador > button[type=submit]'), null);
+                    let formAvaliador    = new FormValidate('#formAvaliador',    new Button('#formAvaliador :button[type=submit]'), null);
                         formAvaliador.setAction('../../control/put_avaliador.php')
 
-                    let formAvaliador2   = new FormValidate('#formAvaliador2',   new Button('#formAvaliador2 > button[type=submit]'), null);
+                    let formAvaliador2   = new FormValidate('#formAvaliador2',   new Button('#formAvaliador2 :button[type=submit]'), null);
                         formAvaliador2.setAction('../../control/put_avaliador.php')
 
                     if(tcc.id === null){

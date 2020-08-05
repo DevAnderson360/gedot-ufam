@@ -59,12 +59,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>ICET::GEDOT - Detalhes de Andersons nogueira silvério</title>
+	<title>ICET::GEDOT - Dados discente</title>
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../css/siderbar.css">
+
+    <!-- material design icons -->
+    <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="../../js/jquery.min.js"></script>
@@ -102,7 +103,6 @@
 			</div>
 			<div class="card-footer">
 				<div class="row">
-					
     				<div class="col-md-2">
     					<button class="btn btn-success" id="generator">Gerar</button>
     				</div>
@@ -333,6 +333,7 @@
     <script src="../../js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller -->
     <script src="../../js/funcoes.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
 

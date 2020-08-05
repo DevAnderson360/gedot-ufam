@@ -11,7 +11,7 @@
     
  ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +21,11 @@
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
 
+    <!-- material design icons -->
     <link rel="stylesheet" href="icons/mdi/css/materialdesignicons.css">
 
-    <!-- Font Awesome JS -->
-    <script defer src="js/solid.js"></script>
-
-
     <script src="js/funcoes.js"></script>
-
 </head>
 <body>
     <nav class="navbar navbar-expand-xl navbar-light bg-light shadow">

@@ -8,7 +8,7 @@
     $page = 3;
  ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +18,8 @@
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../css/siderbar.css">
-    <!-- Font Awesome JS -->
-    <script defer src="../../js/solid.js"></script>
-    <script defer src="../../js/fontawesome.js"></script>
+    <!-- material design icons -->
+    <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">
 </head>
 <body>
     <?php include "includes/menu.php" ?>
@@ -63,7 +60,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            let form = new FormValidate('form',new Button('form > button[type=submit]'), null);
+            let form = new FormValidate('form',new Button('form :button[type=submit]'), null);
                 form.setAction('../../control/put_senha.php');
         });
     </script>
