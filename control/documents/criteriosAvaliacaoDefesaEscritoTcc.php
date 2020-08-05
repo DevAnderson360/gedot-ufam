@@ -1,6 +1,12 @@
 <?php 
 
-	require '../../vendor/autoload.php';
+	require "../../vendor/autoload.php";
+
+    $log = new \App\Utility\Access();
+    $log->validaSession("./");
+
+	// reference the Dompdf namespace
+	use Dompdf\Dompdf;
 
 	// reference the Dompdf namespace
 	use Dompdf\Dompdf;
