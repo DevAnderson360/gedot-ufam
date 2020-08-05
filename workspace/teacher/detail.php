@@ -84,7 +84,7 @@
 				    	Critérios de avaliação do trabalho oral
 				    </option>
 				    <option value="c">
-				    	Comprovante de entrega do TCC para menbros da banca -- falta setar professor da disciplina
+				    	Comprovante de entrega do TCC para menbros da banca
 				    </option>
 				    <option value="d">
 				    	Declaração de Orientação de TCC (Orientador) -- falta setar professor da disciplina

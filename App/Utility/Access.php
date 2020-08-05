@@ -93,6 +93,8 @@ namespace App\Utility;
 	    		$_SESSION['user_name'] = $this->dados->nome;
 	    		$_SESSION['user_shot_name'] = $this->getNome($this->dados->nome);
 	    		$_SESSION['user_matricula'] = $this->dados->matricula;
+	    		if($this->table === "administrador")
+	    			$_SESSION['user_titulo'] = $this->dados->titulo;
 	    		return true;
 	    	}else{
 	    		$this->logOut();
