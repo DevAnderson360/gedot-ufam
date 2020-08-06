@@ -1,9 +1,9 @@
-<nav class="mb-1 navbar navbar-expand-lg  navbar-dark" style="background-color: #008B00;">
-    <a class="navbar-brand justify-content-center" href="./">Gedot</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-      aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-xl navbar-light bg-light shadow">
+    <a class="navbar-brand" href="#"><img class="img-fluid" src="../../img/sis1.png" alt="" width="50" height="50">GEDOT</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#container-menu" aria-controls="container-menu" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -20,7 +20,7 @@
             </li>
         </ul> 
         <div style="text-align: right;">
-            <a class="nav-link" href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;"><?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
+            <a class="nav-link" style="pointer-events: none; cursor: default; opacity: 0.6; color: black; font-weight: bold;"  href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;"><?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
         </div>           
     </div>
 </nav>

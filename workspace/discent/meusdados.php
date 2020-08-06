@@ -26,6 +26,9 @@
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="../../css/siderbar.css">
 
     <!-- material design icons -->
     <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">

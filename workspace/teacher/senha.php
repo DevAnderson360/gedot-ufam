@@ -18,15 +18,18 @@
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
 
+     <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="../../css/siderbar.css">
+
     <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">
 </head>
 <body>
-    <nav class="mb-1 navbar navbar-expand-lg  navbar-dark" style="background-color: #008B00;">
-        <a class="navbar-brand justify-content-center" href="#">GEDOT</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-        aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-xl navbar-light bg-light shadow">
+        <a class="navbar-brand" href="#"><img class="img-fluid" src="../../img/sis1.png" alt="" width="50" height="50">GEDOT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#container-menu" aria-controls="container-menu" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -38,10 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../logoff.php">Sair</a>
                 </li>
-            </ul> 
+            </ul>  
             <div style="text-align: right;">
-                <a class="nav-link" href="#" style="color: white;">Professor&nbsp;&nbsp;<img src="../../img/do-utilizador.png" class="rounded-circle z-depth-0"
-            alt="avatar image" style="width: 30px; height: 30px;"></a>
+                <a class="nav-link" style="pointer-events: none; cursor: default; opacity: 0.6; color: black; font-weight: bold;"  href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;">Prof. <?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
             </div>           
         </div>
     </nav>

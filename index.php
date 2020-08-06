@@ -22,6 +22,9 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
+     <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/siderbar.css">
+
     <!-- material design icons -->
     <link rel="stylesheet" href="icons/mdi/css/materialdesignicons.css">
 
@@ -79,11 +82,11 @@
                             <input type="password" class="form-control" name="password" id="loginSenha" placeholder="******" required="" />
                         </div>
                     </div>
-                    <span class="small">
+                    <!--span class="small">
                         <a href="#" class="badge">Esqueci minha senha</a>
-                    </span>
+                    </span-->
                     <div class="form-row">
-                        <button class="btn btn-success col m-3" type="submit">Login</button>
+                        <button class="btn btn-success col m-3" type="submit" style="display: flex; align-content: center; justify-content: center;">Entrar</button>
                     </div>
                 </form>
             </div>
