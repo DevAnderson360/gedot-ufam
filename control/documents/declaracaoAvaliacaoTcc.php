@@ -89,7 +89,7 @@
                   <tr>
                     <td>
                         <p style="text-indent:4em; font-weight: normal; text-align: justify; line-height: 1.5; font-family: \'Times New Roman\', Times, serif; font-size: 14">
-                          DECLARAMOS para os devidos fins que o(a) <b>'.$_POST['avaliador_nome'].' ('.$_POST['avaliador_instituicao'].')</b> e o(a) <b>'.$_POST['avaliador2_nome'].' ('.$_POST['avaliador2_instituicao'].')</b> participaram, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', como membros da Banca Examinadora do Trabalho de Conclusão de Curso intitulado <b>'.$_POST["tcc_titulo"].'</b>, do(a) discente do curso de Sistemas de Informação <b>'.$_POST["discente_nome"].'</b>, orientado pelo Prof. '.$_POST["orientador_titulo"].' <b>'.$_POST["orientador_nome"].'</b> e defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
+                          DECLARAMOS para os devidos fins que o(a) <b>'.$_POST['avaliador_titulo'].' '.$_POST['avaliador_nome'].' ('.$_POST['avaliador_instituicao'].')</b> e o(a) <b>'.$_POST['avaliador2_titulo'].' '.$_POST['avaliador2_nome'].' ('.$_POST['avaliador2_instituicao'].')</b> participaram, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', como membros da Banca Examinadora do Trabalho de Conclusão de Curso intitulado <b>'.$_POST["tcc_titulo"].'</b>, do(a) discente do curso de Sistemas de Informação <b>'.$_POST["discente_nome"].'</b>, orientado pelo Prof. <b>'.$_POST["orientador_titulo"].' '.$_POST["orientador_nome"].'</b> e defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
                         </p>
                     </td>
                   </tr>

@@ -337,151 +337,106 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            //carregar dados no formulario
+            let loadForm = (action ,inputsName) =>{
+
+                let form = $('#dataForm');
+                
+                form.prop('action', `../../control/documents/${action}`)
+
+                form.html("");
+
+                inputsName.map((e)=>{
+                    let value = $(`#${e}`).val();
+                    form.append(`<input type="hidden" name="${e}" value="${value}" />`);
+                });
+
+                form.submit();
+            }
+
         	let documents = {
-        		//documento 1
-        		a : (form) => {
 
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}" />`);
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}" />`);
-        			form.append(`<input type="hidden" name="orientador_nome" value="${$("#orientador_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="coorientador_nome" value="${$("#coorientador_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
+                a : () =>{
+                    let action = "criteriosAvaliacaoDefesaEscritoTcc.php";
 
-        			form.prop('action', "../../control/documents/criteriosAvaliacaoDefesaEscritoTcc.php")
+                    let DATA = ["discente_nome","discente_ano","tcc_titulo", "orientador_nome","coorientador_nome", "discente_semestre"];
 
-        			form.submit()
+                    loadForm(action,DATA);
+                },
+
+        		b : () => {
+                    let action = "criteriosAvaliacaoDefesaOralTcc.php";
+
+                    let DATA = ["discente_nome","discente_ano","tcc_titulo", "orientador_nome","coorientador_nome", "discente_semestre"];
+
+                    loadForm(action,DATA);
         		},
-        		b : (form) => {
-        			
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}" />`);
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}" />`);
-        			form.append(`<input type="hidden" name="orientador_nome" value="${$("#orientador_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="coorientador_nome" value="${$("#coorientador_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
+        		c : () => {
+                    let action = "comprovanteEntregaTccMenbrosBanca.php";
 
+                    let DATA = ["discente_nome","discente_ano", "discente_semestre"];
 
-        			form.prop('action', "../../control/documents/criteriosAvaliacaoDefesaOralTcc.php")
-
-        			form.submit()
+                    loadForm(action,DATA);
         		},
-        		c : (form) => {
-        			
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}" />`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
+        		d : () => {
+                    let action = "declaracaoOrientacaoTcc.php";
 
-        			form.prop('action', "../../control/documents/comprovanteEntregaTccMenbrosBanca.php")
+                    let DATA = [
+                                "discente_nome","discente_ano", "discente_semestre",
+                                "orientador_titulo", "orientador_nome", "orientador_instituicao",
+                                "tcc_titulo", "tcc_data",
+                                "avaliador_titulo", "avaliador_nome", "avaliador_instituicao",
+                                "avaliador2_titulo", "avaliador2_nome","avaliador2_instituicao"
+                               ];
 
-        			form.submit()
+                    loadForm(action,DATA);
         		},
-        		d : (form) => {
-        			
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}"  />`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
+        		e : () => {
+                    let action = "declaracaoOrientacaoTcc2.php";
 
-        			form.append(`<input type="hidden" name="orientador_titulo" value="${$("#orientador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="orientador_nome" value="${$("#orientador_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="orientador_instituicao" value="${$("#orientador_instituicao").val()}"  />`);
+                    let DATA = [
+                                "discente_nome","discente_ano", "discente_semestre",
+                                "coorientador_titulo", "coorientador_nome", "coorientador_instituicao",
+                                "tcc_titulo", "tcc_data",
+                                "avaliador_titulo", "avaliador_nome", "avaliador_instituicao",
+                                "avaliador2_titulo", "avaliador2_nome","avaliador2_instituicao"
+                               ];
 
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}"  />`);
-        			form.append(`<input type="hidden" name="tcc_data" value="${$("#tcc_data").val()}"  />`);
-
-        			form.append(`<input type="hidden" name="avaliador_titulo" value="${$("#avaliador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador_nome" value="${$("#avaliador_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="avaliador_instituicao" value="${$("#avaliador_instituicao").val()}"  />`);
-
-        			form.append(`<input type="hidden" name="avaliador2_titulo" value="${$("#avaliador2_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_nome" value="${$("#avaliador2_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="avaliador2_instituicao" value="${$("#avaliador2_instituicao").val()}"  />`);
-
-        			form.prop('action', "../../control/documents/declaracaoOrientacaoTcc.php")
-
-        			form.submit()
+                    loadForm(action,DATA);
         		},
-        		e : (form) => {
-        			
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}"  />`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
+        		f : () => {
 
-        			form.append(`<input type="hidden" name="coorientador_titulo" value="${$("#coorientador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="coorientador_nome" value="${$("#coorientador_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="coorientador_instituicao" value="${$("#coorientador_instituicao").val()}"  />`);
+                    let action = "declaracaoAvaliacaoTcc.php";
 
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}"  />`);
-        			form.append(`<input type="hidden" name="tcc_data" value="${$("#tcc_data").val()}"  />`);
+                    let DATA = [
+                                "discente_nome","discente_ano", "discente_semestre",
+                                "orientador_titulo", "orientador_nome",
+                                "tcc_titulo", "tcc_data",
+                                "avaliador_titulo", "avaliador_nome", "avaliador_instituicao",
+                                "avaliador2_titulo","avaliador2_nome","avaliador2_instituicao"
+                               ];
 
-        			form.append(`<input type="hidden" name="avaliador_titulo" value="${$("#avaliador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador_nome" value="${$("#avaliador_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="avaliador_instituicao" value="${$("#avaliador_instituicao").val()}"  />`);
-
-        			form.append(`<input type="hidden" name="avaliador2_titulo" value="${$("#avaliador2_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_nome" value="${$("#avaliador2_nome").val()}"  />`);
-        			form.append(`<input type="hidden" name="avaliador2_instituicao" value="${$("#avaliador2_instituicao").val()}"  />`);
-
-        			form.prop('action', "../../control/documents/declaracaoOrientacaoTcc2.php")
-
-        			form.submit()
+                    loadForm(action,DATA);
         		},
-        		f : (form) => {
-        			
-        			form.append(`<input type="hidden" name="avaliador_nome" value="${$("#avaliador_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_nome" value="${$("#avaliador2_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador_instituicao" value="${$("#avaliador_instituicao").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_instituicao" value="${$("#avaliador2_instituicao").val()}"/>`);
+        		h : () => {
+        			let action = "folha.php";
 
-        			form.append(`<input type="hidden" name="tcc_data" value="${$("#tcc_data").val()}"/>`);
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}"/>`);
+                    let DATA = [
+                                "discente_nome",
+                                "tcc_titulo", "tcc_data",
+                                "orientador_titulo", "orientador_nome","orientador_instituicao",
+                                "avaliador_titulo", "avaliador_nome", "avaliador_instituicao",
+                                "avaliador2_titulo","avaliador2_nome","avaliador2_instituicao"
+                               ];
 
-        			form.append(`<input type="hidden" name="orientador_nome" value="${$("#orientador_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="orientador_titulo" value="${$("#orientador_titulo").val()}"/>`);
-        			
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="discente_semestre" value="${$("#discente_semestre").val()}"/>`);
-        			form.append(`<input type="hidden" name="discente_ano" value="${$("#discente_ano").val()}"/>`);
-
-
-        			form.prop('action', "../../control/documents/declaracaoAvaliacaoTcc.php")
-
-        			form.submit()
-        		},
-        		h : (form) => {
-
-        			//folha
-        			
-        			form.append(`<input type="hidden" name="orientador_nome" value="${$("#orientador_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="orientador_titulo" value="${$("#orientador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="orientador_instituicao" value="${$("#orientador_instituicao").val()}"/>`);
-
-        			form.append(`<input type="hidden" name="avaliador_nome" value="${$("#avaliador_nome").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_nome" value="${$("#avaliador2_nome").val()}"/>`);
-
-        			form.append(`<input type="hidden" name="avaliador_titulo" value="${$("#avaliador_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_titulo" value="${$("#avaliador2_titulo").val()}"/>`);
-
-        			form.append(`<input type="hidden" name="avaliador_instituicao" value="${$("#avaliador_instituicao").val()}"/>`);
-        			form.append(`<input type="hidden" name="avaliador2_instituicao" value="${$("#avaliador2_instituicao").val()}"/>`);
-
-        			form.append(`<input type="hidden" name="discente_nome" value="${$("#discente_nome").val()}"/>`);
-
-        			form.append(`<input type="hidden" name="tcc_titulo" value="${$("#tcc_titulo").val()}"/>`);
-        			form.append(`<input type="hidden" name="tcc_data" value="${$("#tcc_data").val()}"/>`);
-
-        			form.prop('action', "../../control/documents/folha.php")
-
-        			form.submit()
+                    loadForm(action,DATA);
         		},
         		
         	}
 
-
         	$("#generator").click(()=>{
-        		let form = $('#dataForm');
         		let option = $("#documento").val();
-        		documents[option](form)
+        		documents[option]()
 
         	})
         })

@@ -18,102 +18,102 @@
   $semestre = $_POST["discente_semestre"] == 1 ? "primeiro" : "segundo";
 
 	$html = '<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>DECLARAÇÃO DE ORIENTAÇÃO DE TCC
-</title>
-  <style>
-    td, th {
-      padding: .5em;
-      margin: 0;
-      /*border: 1px solid #ccc;*/
-      text-align: center;
-    }
+            <html lang="pt-br">
+            <head>
+              <meta charset="UTF-8">
+              <title>DECLARAÇÃO DE ORIENTAÇÃO DE TCC
+            </title>
+              <style>
+                td, th {
+                  padding: .5em;
+                  margin: 0;
+                  /*border: 1px solid #ccc;*/
+                  text-align: center;
+                }
 
-    th{
-      /*background-color: #EEE;*/
-    }
-    td{
-      font-weight:bold;
-      /*background-color: #EEE;*/
-    }
+                th{
+                  /*background-color: #EEE;*/
+                }
+                td{
+                  font-weight:bold;
+                  /*background-color: #EEE;*/
+                }
 
-    table{
-      width: 100%;
-      margin-bottom : .5em;
-      table-layout: fixed;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-    
-    <table border="0" cellpadding="1" cellspacing="0">
-      <thead>
-        <tr>
-          <td>
-            <img src="img/brasao.png" style="width: 75px; height: 75px;" alt="">
-          </td>
-          <td style="width:50%">
-              Poder Executivo<br>
-              Ministério da Educação.<br>
-              Universidade Federal do Amazonas.<br>
-              Instituto de Ciências Exatas e Tecnologia.<br>
-          </td>
-          <td>
-            <img src="img/logoufam.jpg" style="width: 75px; height: 75px;" alt="">
-          </td>
-        </tr>
-      </thead>
-    </table>
-    <hr>
-    <table>
-      <tr>
-        <td>
-        	<b>TRABALHO DE CONCLUSÃO DE CURSO</b>
-		</td>
-      </tr>
-    </table>
-    
-    <table style="margin-top: 50;">
-		  <tr>
-        <td>
-          <i style="font-size: 25;">DECLARAÇÃO</i>
-        </td>
-      </tr>
-    </table>
+                table{
+                  width: 100%;
+                  margin-bottom : .5em;
+                  table-layout: fixed;
+                  text-align: center;
+                }
+              </style>
+            </head>
+            <body>
+                
+                <table border="0" cellpadding="1" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <td>
+                        <img src="img/brasao.png" style="width: 75px; height: 75px;" alt="">
+                      </td>
+                      <td style="width:50%">
+                          Poder Executivo<br>
+                          Ministério da Educação.<br>
+                          Universidade Federal do Amazonas.<br>
+                          Instituto de Ciências Exatas e Tecnologia.<br>
+                      </td>
+                      <td>
+                        <img src="img/logoufam.jpg" style="width: 75px; height: 75px;" alt="">
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                <hr>
+                <table>
+                  <tr>
+                    <td>
+                    	<b>TRABALHO DE CONCLUSÃO DE CURSO</b>
+            		</td>
+                  </tr>
+                </table>
+                
+                <table style="margin-top: 50;">
+            		  <tr>
+                    <td>
+                      <i style="font-size: 25;">DECLARAÇÃO</i>
+                    </td>
+                  </tr>
+                </table>
 
-    <table style="margin-top: 50;">
-      <tr>
-        <td>
-            <p style="font-weight: normal; text-align: justify; line-height: 1.5; font-family: \'Times New Roman\', Times, serif; font-size: 14">
-              DECLARAMOS para os devidos fins que o(a) '.$_POST["orientador_titulo"].' <b>'.$_POST["orientador_nome"].' ('.$_POST["orientador_instituicao"].')</b> orientou, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', o discente do curso de Sistemas de Informação <b>'.$_POST['discente_nome'].'</b> em seu Trabalho de Conclusão de Curso intitulado <i>'.$_POST['tcc_titulo'].'</i>, defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
-            </p>
-        </td>
-      </tr>
-    </table>
-	
-	<div style="text-align: right; margin-top: 100;">
-		<div>
-			'.\App\Utility\Tools::nowDate().'
-		</div>
-		<div style="margin-top: 50px; text-align: center">
-			____________________________________________________<br>
-			'.$docente.'<br>
-        	Professora da Disciplina
+                <table style="margin-top: 50;">
+                  <tr>
+                    <td>
+                        <p style="font-weight: normal; text-align: justify; line-height: 1.5; font-family: \'Times New Roman\', Times, serif; font-size: 14">
+                          DECLARAMOS para os devidos fins que o(a) '.$_POST["orientador_titulo"].' <b>'.$_POST["orientador_nome"].' ('.$_POST["orientador_instituicao"].')</b> orientou, no '.$semestre.' semestre acadêmico de '.$_POST["discente_ano"].', o discente do curso de Sistemas de Informação <b>'.$_POST['discente_nome'].'</b> em seu Trabalho de Conclusão de Curso intitulado <i>'.$_POST['tcc_titulo'].'</i>, defendido no dia '.\App\Utility\Tools::dateFormat($_POST["tcc_data"]).'.
+                        </p>
+                    </td>
+                  </tr>
+                </table>
+            	
+            	<div style="text-align: right; margin-top: 100;">
+            		<div>
+            			'.\App\Utility\Tools::nowDate().'
+            		</div>
+            		<div style="margin-top: 50px; text-align: center">
+            			____________________________________________________<br>
+            			'.$docente.'<br>
+                    	Professora da Disciplina
 
-		</div>
-	</div>
+            		</div>
+            	</div>
 
-  <div style="margin-top: 20;">
-    <b>Membros da Banca Examinadora:</b>
-    <div style="margin-top: 10;">'.$_POST["avaliador_titulo"].' '.$_POST["avaliador_nome"].' ('.$_POST["avaliador_instituicao"].')</div>
-    <div style="margin-top: 10;">'.$_POST["avaliador2_titulo"].' '.$_POST["avaliador2_nome"].' ('.$_POST["avaliador2_instituicao"].')</div>
-  </div>
+              <div style="margin-top: 20;">
+                <b>Membros da Banca Examinadora:</b>
+                <div style="margin-top: 10;">'.$_POST["avaliador_titulo"].' '.$_POST["avaliador_nome"].' ('.$_POST["avaliador_instituicao"].')</div>
+                <div style="margin-top: 10;">'.$_POST["avaliador2_titulo"].' '.$_POST["avaliador2_nome"].' ('.$_POST["avaliador2_instituicao"].')</div>
+              </div>
 
-</body>
-</html>';
+            </body>
+            </html>';
 
 	$dompdf->loadHtml($html);
 

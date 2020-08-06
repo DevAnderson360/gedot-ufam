@@ -74,7 +74,7 @@
               <table style="margin-top: 50;">
           		  <tr>
                   <td>
-                    <i style="font-size: 15;">TITULO DO TRABALHO</i>
+                    <i style="font-size: 15;">'.$_POST["tcc_titulo"].'</i>
                   </td>
                 </tr>
               </table>
