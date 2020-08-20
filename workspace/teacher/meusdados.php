@@ -5,6 +5,35 @@
     $access = new \App\Utility\Access();
     $access->validaSession("../../");
 
+    $titulos = function()
+    {
+       $conn = \App\Bd\Database::conexao();
+
+       $sql = "SELECT * FROM titulo";
+
+       $query = $conn->prepare($sql);
+
+       $query->execute();
+
+       return $query->fetchAll(\PDO::FETCH_OBJ);
+    };
+
+    $dados = function()
+    {
+       $conn = \App\Bd\Database::conexao();
+
+       $sql = "SELECT * FROM `administrador`";
+
+       $query = $conn->prepare($sql);
+
+       $query->execute();
+
+       return $query->fetch(\PDO::FETCH_OBJ);
+    };
+
+
+    $admin = $dados(); 
+
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,7 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>ICET:: GEDOT :: Minha Senha</title>
+    <title>ICET:: GEDOT :: Meus dados</title>
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
@@ -32,11 +61,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="meusdados.php">Meus dados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="senha.php">Mudar Senha</a>
+                    <a class="nav-link" href="senha.php">Mudar Senha</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../logoff.php">Sair</a>
@@ -47,7 +76,7 @@
             </div>           
         </div>
     </nav>
-    <div class="container mt-5 col-md-4">
+    <div class="container mt-5 col-md-10">
         <form>
         <div class="card shadow">
             <div class="card-header">
@@ -55,16 +84,25 @@
             </div>
             <div class="card-body">
                  <div class="form-row">
-                    <div class="form-group col">
-                        <label for="atual">Atual:</label>
-                        <input type="password" class="form-control" name="atual" id="atual" value="" required="" autocomplete="false">
+                    <div class="form-group col-md-4">
+                        <label for="titulo">Título</label>
+                        <select name="titulo" id="titulo" class="form-control">
+                        <?php foreach ($titulos() as $value): ?>
+                            <option value="<?=$value->abv?>" <?php if($value->abv == $admin->titulo) echo "selected"; ?> ><?="{$value->abv} - {$value->descricao}"?></option>
+                        <?php endforeach; ?>   
+                        </select>
                     </div>
+                    <div class="form-group col-md">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" name="nome" id="nome" value="<?=$admin->nome?>" required="" autocomplete="false"></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
-                        <label for="nova">Nova:</label>
-                        <input type="password" class="form-control" name="nova" id="nova" value="" required="" autocomplete="false">
-                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="matricula">Matricula: <span class="small">Mesma que é usada no login</span></label>
+                        <input type="text" class="form-control" id="matricula" name="matricula" required="" value="<?=$admin->matricula?>" autocomplet="false"></div>
+                    <div class="form-group col-md">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" id="email" name="email" required="" value="<?=$admin->email?>" autocomplete="false"></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -85,7 +123,7 @@
         $(document).ready(function () {
 
             let form = new FormValidate('form',new Button('form :button[type=submit]'), null);
-                form.setAction('../../control/put_senha_admin.php');
+                form.setAction('../../control/put_admin.php');
         });
     </script>
 </body>

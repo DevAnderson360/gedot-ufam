@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+    <div class="collapse navbar-collapse" id="container-menu">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link <?php if($page === 1) echo "active" ?>" href="./">Home</a>

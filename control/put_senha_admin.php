@@ -56,8 +56,6 @@
 	{
 		$crud = \App\Bd\Crud::getInstance(\App\Bd\Database::conexao(),"administrador");
 
-		$sql = "UPDATE `administrador` SET `senha` = ? WHERE id = ?";
-
 		$result = $crud->update(array("senha" => $_POST['nova']),array("id="=>$_SESSION['user_id']));
 
 		if($result)

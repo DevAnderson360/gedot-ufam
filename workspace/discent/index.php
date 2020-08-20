@@ -34,14 +34,8 @@
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
 
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../css/siderbar.css">
-
     <!-- material design icons -->
     <link rel="stylesheet" href="../../icons/mdi/css/materialdesignicons.css">
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="../../js/jquery.min.js"></script>
 </head>
 <body>
     <?php include "includes/menu.php" ?>
@@ -246,6 +240,8 @@
             </div>
         </form>
     </div>
+    <!-- jQuery -->
+    <script src="../../js/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="../../js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller -->

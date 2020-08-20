@@ -3,7 +3,7 @@
 
     #valida a sessao
     $access = new \App\Utility\Access();
-    $access->validaSession("../../index.html");
+    $access->validaSession("../../");
 
 
     //pegar dados
@@ -30,9 +30,7 @@
 
      <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../css/siderbar.css">
-
+    
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="../../js/jquery.min.js"></script>
 
@@ -55,10 +53,13 @@
         <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <div class="collapse navbar-collapse" id="container-menu">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="meusdados.php">Meus dados</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="senha.php">Mudar Senha</a>

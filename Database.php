@@ -17,7 +17,6 @@ class Database{
         # Informações sobre o banco de dados:
         $db_host = "localhost";
         $db_nome = "tcc";//nome do banco de dados
-        //$db_nome = "id12555370_tcc";//nome do banco de dados
         $db_usuario = "root";
         $db_senha = "";
         $db_driver = "mysql";
@@ -30,7 +29,7 @@ class Database{
             # Garante que os dados sejam armazenados com codificação UFT-8.
             self::$db->exec('SET NAMES utf8');
         }
-        catch (\PDOException $e)
+        catch (PDOException $e)
         {
             # Envia um e-mail para o e-mail oficial do sistema, em caso de erro de conexão.
             //mail($sistema_email, "PDOException em $sistema_titulo", $e->getMessage());
