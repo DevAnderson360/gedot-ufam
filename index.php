@@ -79,9 +79,9 @@
                             <input type="password" class="form-control" name="password" id="loginSenha" placeholder="******" required="" />
                         </div>
                     </div>
-                    <!--span class="small">
-                        <a href="#" class="badge">Esqueci minha senha</a>
-                    </span-->
+                    <span class="small">
+                        <a href="#" class="badge"  data-toggle="modal" data-target=".bd-example-modal-sm">Esqueci minha senha</a>
+                    </span>
                     <div class="form-row">
                         <button class="btn btn-success col m-3" type="submit" style="display: flex; align-content: center; justify-content: center;">Entrar</button>
                     </div>
@@ -162,14 +162,39 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nova mensagem</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Destinatário:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Mensagem:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="js/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="js/bootstrap.min.js"></script>
-    <!-- Extras -->
-    <!--script src="js/jquery.mask.min.js"></script-->
-   
-
     <script type="text/javascript">
         $(document).ready(()=>{
            
@@ -181,5 +206,4 @@
         });
     </script>
 </body>
-
 </html>

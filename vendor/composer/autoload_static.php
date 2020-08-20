@@ -11,6 +11,10 @@ class ComposerStaticInitf1d962a151a53ebfd53641beb53556ab
         array (
             'Svg\\' => 4,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'F' => 
         array (
             'FontLib\\' => 8,
@@ -29,6 +33,10 @@ class ComposerStaticInitf1d962a151a53ebfd53641beb53556ab
         'Svg\\' => 
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'FontLib\\' => 
         array (
@@ -57,9 +65,11 @@ class ComposerStaticInitf1d962a151a53ebfd53641beb53556ab
     public static $classMap = array (
         'App\\Bd\\Crud' => __DIR__ . '/../..' . '/App/Bd/Crud.php',
         'App\\Bd\\Database' => __DIR__ . '/../..' . '/App/Bd/Database.php',
+        'App\\Entities\\Avaliador' => __DIR__ . '/../..' . '/App/Entities/Avaliador.php',
         'App\\Entities\\Discent' => __DIR__ . '/../..' . '/App/Entities/Discent.php',
+        'App\\Entities\\Group' => __DIR__ . '/../..' . '/App/Entities/Group.php',
+        'App\\Entities\\Orientador' => __DIR__ . '/../..' . '/App/Entities/Orientador.php',
         'App\\Entities\\Tcc' => __DIR__ . '/../..' . '/App/Entities/Tcc.php',
-        'App\\Fpdf\\FPDF' => __DIR__ . '/../..' . '/App/Fpdf/Fpdf.php',
         'App\\Utility\\Access' => __DIR__ . '/../..' . '/App/Utility/Access.php',
         'App\\Utility\\Tools' => __DIR__ . '/../..' . '/App/Utility/Tools.php',
         'Dompdf\\Adapter\\CPDF' => __DIR__ . '/..' . '/dompdf/dompdf/src/Adapter/CPDF.php',
@@ -175,6 +185,11 @@ class ComposerStaticInitf1d962a151a53ebfd53641beb53556ab
         'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
         'HTML5_Tokenizer' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
         'HTML5_TreeBuilder' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'Sabberworm\\CSS\\CSSList\\AtRuleBlockList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/AtRuleBlockList.php',
         'Sabberworm\\CSS\\CSSList\\CSSBlockList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/CSSBlockList.php',
         'Sabberworm\\CSS\\CSSList\\CSSList' => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib/Sabberworm/CSS/CSSList/CSSList.php',

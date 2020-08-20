@@ -69,7 +69,7 @@
                 </li>
             </ul>  
             <div style="text-align: right;">
-                <a class="nav-link" style="pointer-events: none; cursor: default; opacity: 0.6; color: black; font-weight: bold;"  href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;">Prof. <?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/do-utilizador.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
+                <a class="nav-link" style="pointer-events: none; cursor: default; opacity: 0.6; color: black; font-weight: bold;"  href="<?=$_SERVER['REQUEST_URI']?>" style="color: white;">Prof. <?=$_SESSION['user_shot_name']?>&nbsp;&nbsp;<img src="../../img/p1.png" alt="avatar image" style="width: 30px; height: 30px;"></a>
             </div>           
         </div>
     </nav>

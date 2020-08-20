@@ -84,17 +84,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="orientado_instituicao">Instituição que trabalha</label>
                             <input type="text" class="form-control" id="orientador_instituicao" name="instituicao" value="" required />
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="orientador_telefone">Telefone</label>
                             <input type="text" class="form-control" name="telefone" data-mask="(00) 00000-0000" data-mask-selectonfocus="true" id="orientador_telefone" value="" required="" />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="orientador_email">E-mail</label>
                             <input type="email" class="form-control" name="email" id="orientador_email" value=""  required="" />
                         </div>
@@ -124,17 +124,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="coorientador_instituicao">Instituição que trabalha</label>
                             <input type="text" class="form-control" id="coorientador_instituicao" value="" name="instituicao" required />
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="coorientador_telefone">Telefone</label>
                             <input type="text" class="form-control" name="telefone" id="coorientador_telefone" value="" required="" />
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col-md">
                             <label for="coorientador_email">E-mail</label>
                             <input type="email" class="form-control" name="email" value="" id="coorientador_email" required="" />
                         </div>
