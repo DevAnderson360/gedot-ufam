@@ -17,7 +17,6 @@ class Database{
         # Informações sobre o banco de dados:
         $db_host = "localhost";
         $db_nome = "tcc";//nome do banco de dados
-        //$db_nome = "id12555370_tcc";//nome do banco de dados
         $db_usuario = "root";
         $db_senha = "";
         $db_driver = "mysql";
